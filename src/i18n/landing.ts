@@ -1,8 +1,6 @@
 export type Lang = "ru" | "en";
 
-/** Ссылки на Telegram: при необходимости замените канал на свой. */
-export const telegramDirectUrl = "https://t.me/vibecraft";
-export const telegramChannelUrl = "https://t.me/vibecraft";
+export const telegramDirectUrl = "https://t.me/Razmik6";
 
 export interface LandingMessages {
   seo: { title: string; description: string; keywords: string };
@@ -16,7 +14,6 @@ export interface LandingMessages {
     manifest: string;
     contact: string;
     order: string;
-    tgChannel: string;
     langRu: string;
     langEn: string;
   };
@@ -82,6 +79,12 @@ export interface LandingMessages {
   testimonials: {
     title: string;
     note: string;
+    items: {
+      quote: string;
+      author: string;
+      role: string;
+      project: string;
+    }[];
   };
   manifestTeaser: {
     title: string;
@@ -102,15 +105,24 @@ export interface LandingMessages {
     back: string;
     backToBlog: string;
   };
+  /** Страница /cases — посты блога с tag «Кейс» / «Case study» */
+  casesList: {
+    title: string;
+    description: string;
+    keywords: string;
+    h1: string;
+    sub: string;
+    back: string;
+    viewAll: string;
+    viewBlog: string;
+    empty: string;
+  };
   contact: {
     title: string;
     sub: string;
-    namePh: string;
-    contactPh: string;
-    messagePh: string;
-    submit: string;
+    ctaTelegram: string;
+    ctaForm: string;
     privacy: string;
-    fastTg: string;
   };
   footer: {
     tagline: string;
@@ -121,7 +133,6 @@ export interface LandingMessages {
     rights: string;
     email: string;
     tgDirect: string;
-    tgChannel: string;
   };
 }
 
@@ -143,12 +154,11 @@ const ru: LandingMessages = {
     manifest: "Манифест",
     contact: "Контакты",
     order: "Обсудить проект →",
-    tgChannel: "TG-канал",
     langRu: "RU",
     langEn: "EN",
   },
   hero: {
-    h1: "От идеи до рабочего продукта — за 2–4 недели. Фикс в договоре. Код — ваш.",
+    h1: "MVP за 2–4 недели. Показываю всё — от цены до прогресса. Код — ваш.",
     lead: "Прямой контакт с разработчиком. Без менеджеров, раздутых команд и полугодовых спринтов.",
     bullets: [
       "Срок и бюджет фиксирую до старта — письменно",
@@ -329,37 +339,60 @@ const ru: LandingMessages = {
   },
   cases: {
     title: "Кейсы",
-    moreLabel: "Подробные разборы — в блоге; отдельные публичные кейсы дополняю по мере согласований.",
+    moreLabel: "Разборы в блоге; цифры и названия заведений — по согласованию с клиентом.",
     items: [
       {
-        icon: "🚚",
-        title: "Приложение для водителей + центр управления",
-        meta: "Логистика · стек по согласованию с клиентом",
+        icon: "🍸",
+        title: "Квиз в Telegram Mini App для коктейль-бара",
+        meta: "HoReCa · Rails · PostgreSQL · Telegram Web Apps",
         problem:
-          "Заявки и маршруты жили в таблицах и чатах: статус рейсов был непрозрачен, руководству не хватало единой картины.",
+          "Нужна была точка входа в сезонное меню вместо бумажного меню и поста: вовлечь гостя и привязать к покупке.",
         solution:
-          "Мобильное приложение для исполнителей на местах и веб-админка для диспетчеризации: статусы, уведомления, базовая аналитика в одном контуре.",
-        result: "Пилот на ограниченной географии — дальше масштабирование по факту метрик (подпись клиента запрашивается для публичной цифры).",
-        readMore: "Материалы в блоге →",
-        readMoreHref: "/blog",
+          "MVP: квиз «какой ты коктейль сезона», рекомендации из меню и скидка 10%. Rails 7 монолит, PostgreSQL, бот и Mini App через Telegram API, TUI-админка в терминале, деплой на VPS.",
+        result:
+          "350+ прохождений квиза; в первый день продаж сезонного меню 56,7% выручки — на сезонных коктейлях; 2,3% выручки — скидка за квиз.",
+        readMore: "Читать разбор →",
+        readMoreHref: "/blog/spring-bonus-quiz",
       },
       {
         icon: "☕",
-        title: "MVP для кофейни за 18 дней",
-        meta: "HoReCa · Flutter · Supabase",
-        problem: "Нужно было быстро проверить гипотезу заказа и лояльности без долгой разработки «с нуля» на неизвестном стеке.",
+        title: "CoffeeOS — система для сети кофеен",
+        meta: "HoReCa · Supabase · RLS · мульти-тенант",
+        problem:
+          "Нужен был не «экран учёта», а единый контур: бариста, менеджеры, кухня, гость, смены, касса, склад, лояльность.",
         solution:
-          "Собрали поток заказа, оплату и программу лояльности на связке Flutter + Supabase — с фокусом на скорость выхода, не на бесконечный функционал.",
-        result: "Запуск MVP за 18 дней; гипотеза проверена, дальше — масштабирование по данным (детали в статье).",
+          "Админка точки, табло бариста, киоск и мобильное приложение, промо и заготовки — в одной архитектуре. ~65 таблиц, 50+ SQL-функций, роли с RLS, мульти-тенант.",
+        result: "MVP собран и готов к тестированию в точках; дальше — запуск в прод по согласованию с сетью.",
         readMore: "Читать разбор →",
-        readMoreHref: "/blog/coffee-mvp.md",
+        readMoreHref: "/blog/coffee-os",
+      },
+      {
+        icon: "🚚",
+        title: "Логистика: исполнители + диспетчеризация",
+        meta: "Пилот · в разработке",
+        problem:
+          "Заявки и статусы рейсов разъезжались по таблицам и чатам — не было одной картины для руководства и поля.",
+        solution:
+          "Задуман контур: мобильное приложение для исполнителей и веб для диспетчеризации (статусы, уведомления, базовая аналитика).",
+        result:
+          "Продакшн не выведен — проект в доработке. Публичный разбор появится после запуска или отдельного согласования.",
+        readMore: "Блог →",
+        readMoreHref: "/blog",
       },
     ],
   },
   testimonials: {
     title: "Что говорят клиенты",
-    note:
-      "Публичные цитаты с именами и компаниями согласовываю индивидуально. Пока ориентир — разборы в блоге, фикс в договоре и еженедельные демо в процессе.",
+    note: "Публичные цитаты согласовываю с клиентами индивидуально.",
+    items: [
+      {
+        quote:
+          "Сначала сделали квиз для бара — 350 человек прошли за первые недели, в день запуска сезонного меню больше половины выручки пришло с сезонных позиций. Потом взялись за CoffeeOS для сети: смены, склад, лояльность, мульти-тенант. Всё по делу, без воды. Сроки держит, прогресс виден каждую неделю — не приходится вытягивать клещами.",
+        author: "Арам Г.",
+        role: "Основатель",
+        project: "Квиз-бот + CoffeeOS",
+      },
+    ],
   },
   manifestTeaser: {
     title: "Манифест",
@@ -404,15 +437,23 @@ const ru: LandingMessages = {
     back: "← На главную",
     backToBlog: "← К списку статей",
   },
+  casesList: {
+    title: "Кейсы Vibecraft — разборы проектов",
+    description: "Реальные проекты: задача, стек, результат. Материалы пополняются.",
+    keywords: "кейсы разработки, MVP, Telegram Mini App, HoReCa, кейсы",
+    h1: "Кейсы",
+    sub: "Полные разборы публикуются в блоге; здесь только материалы с тегом «Кейс». Список будет расти.",
+    back: "← На главную",
+    viewAll: "Все кейсы →",
+    viewBlog: "Блог — все материалы, статьи и заметки →",
+    empty: "Пока нет опубликованных кейсов в блоге — загляните позже.",
+  },
   contact: {
     title: "Расскажите о задаче — отвечу с оценкой за 3 часа",
-    sub: "Без обязательств. Только контакт и суть.",
-    namePh: "Имя",
-    contactPh: "Email или Telegram",
-    messagePh: "Кратко о задаче — опционально",
-    submit: "Обсудить проект →",
-    privacy: "Никакого спама. Контакт только для связи по заявке.",
-    fastTg: "Нужно быстрее? Написать напрямую в Telegram →",
+    sub: "Напишите в Telegram или оставьте заявку в форме — как удобнее. Без обязательств.",
+    ctaTelegram: "Написать в Telegram",
+    ctaForm: "Заполнить форму заявки",
+    privacy: "Форма на Google: ответы в таблице; контакт только для связи по заявке.",
   },
   footer: {
     tagline: "VIBECRAFT",
@@ -423,7 +464,6 @@ const ru: LandingMessages = {
     rights: "Все права защищены.",
     email: "hello@vibecraft.su",
     tgDirect: "Telegram",
-    tgChannel: "TG-канал",
   },
 };
 
@@ -445,12 +485,11 @@ const en: LandingMessages = {
     manifest: "Manifesto",
     contact: "Contact",
     order: "Discuss project →",
-    tgChannel: "TG channel",
     langRu: "RU",
     langEn: "EN",
   },
   hero: {
-    h1: "From idea to a working product in 2–4 weeks. Fixed in the contract. The code is yours.",
+    h1: "MVP in 2–4 weeks. I show you everything — from price to progress. The code is yours.",
     lead: "Direct contact with the engineer. No account managers, bloated teams, or endless sprints.",
     bullets: [
       "Timeline and budget fixed before kickoff — in writing",
@@ -631,37 +670,60 @@ const en: LandingMessages = {
   },
   cases: {
     title: "Cases",
-    moreLabel: "Longer write-ups live in the blog; standalone public cases are added as clients approve.",
+    moreLabel: "Full write-ups in the blog; venue names and figures are shared when clients approve.",
     items: [
       {
-        icon: "🚚",
-        title: "Driver app + control center",
-        meta: "Logistics · stack agreed with the client",
+        icon: "🍸",
+        title: "Telegram Mini App quiz for a cocktail bar",
+        meta: "HoReCa · Rails · PostgreSQL · Telegram Web Apps",
         problem:
-          "Routes and requests lived in spreadsheets and chats: execution status was opaque and leadership lacked a single operational view.",
+          "The venue needed a seasonal-menu entry point beyond paper menus and a post: engage guests and tie the experience to a purchase.",
         solution:
-          "A mobile app for people in the field plus a web admin for dispatch: statuses, notifications, and baseline analytics in one loop.",
-        result: "Pilot in a limited region — scale when metrics justify it (a public number requires client sign-off).",
-        readMore: "Blog →",
-        readMoreHref: "/blog",
+          "MVP: a “which cocktail are you?” quiz, menu recommendations, and a 10% discount. Rails 7 monolith, PostgreSQL, Telegram Bot + Mini App, terminal-based admin UI, VPS deploy.",
+        result:
+          "350+ quiz completions; on the first day of seasonal sales, 56.7% of revenue came from seasonal cocktails; 2.3% of revenue tied to the quiz discount.",
+        readMore: "Read the breakdown →",
+        readMoreHref: "/blog/spring-bonus-quiz",
       },
       {
         icon: "☕",
-        title: "Coffee-shop MVP in 18 days",
-        meta: "HoReCa · Flutter · Supabase",
-        problem: "Validate ordering and loyalty fast without a long greenfield build on an unknown stack.",
+        title: "CoffeeOS — system for a coffee chain",
+        meta: "HoReCa · Supabase · RLS · multi-tenant",
+        problem:
+          "The goal wasn’t a single admin screen — it was one loop for baristas, managers, kitchen, guests, shifts, cash, stock, and loyalty.",
         solution:
-          "Shipped ordering, payments, and loyalty on Flutter + Supabase — optimized for speed to market, not endless scope.",
-        result: "MVP shipped in 18 days; hypothesis tested — details in the article.",
+          "Point admin, barista board, kiosk and mobile app, promos and prep kitchen — one architecture. ~65 tables, 50+ SQL functions, RLS roles, multi-tenant.",
+        result: "MVP is built and ready for pilot testing in stores; production rollout follows agreement with the chain.",
         readMore: "Read the breakdown →",
-        readMoreHref: "/blog/coffee-mvp.md",
+        readMoreHref: "/blog/coffee-os",
+      },
+      {
+        icon: "🚚",
+        title: "Logistics: field crews + dispatch",
+        meta: "Pilot · in development",
+        problem:
+          "Jobs and trip status lived across spreadsheets and chats — no single picture for ops or leadership.",
+        solution:
+          "Planned loop: a mobile app for crews and a web console for dispatch (statuses, notifications, baseline analytics).",
+        result:
+          "Not in production yet — still in development. A public write-up will follow after launch or explicit approval.",
+        readMore: "Blog →",
+        readMoreHref: "/blog",
       },
     ],
   },
   testimonials: {
     title: "What clients say",
-    note:
-      "Public quotes with names and companies are agreed case by case. For now, see blog write-ups, fixed-price contracts, and weekly demos during the build.",
+    note: "Public quotes are agreed with each client individually.",
+    items: [
+      {
+        quote:
+          "First we built a quiz bot for the bar — 350 people went through it in the first few weeks, and on launch day over half the revenue came from the seasonal menu items. Then we moved on to CoffeeOS for the chain: shifts, inventory, loyalty, multi-tenant. No fluff, all substance. Deadlines held, progress was visible every week — I didn't have to chase anyone.",
+        author: "Aram G.",
+        role: "Founder",
+        project: "Quiz bot + CoffeeOS",
+      },
+    ],
   },
   manifestTeaser: {
     title: "Manifesto",
@@ -706,15 +768,23 @@ const en: LandingMessages = {
     back: "← Home",
     backToBlog: "← All articles",
   },
+  casesList: {
+    title: "Vibecraft case studies",
+    description: "Real projects: problem, stack, outcome. New write-ups are added over time.",
+    keywords: "MVP case studies, Telegram Mini App, HoReCa, product development",
+    h1: "Case studies",
+    sub: "Full write-ups live in the blog; this page lists posts tagged “Case study”. More coming.",
+    back: "← Home",
+    viewAll: "All case studies →",
+    viewBlog: "Blog — all posts, notes & articles →",
+    empty: "No published case studies yet — check back soon.",
+  },
   contact: {
     title: "Tell me about the task — estimate within 3 hours",
-    sub: "No obligation. Just contact and the gist.",
-    namePh: "Name",
-    contactPh: "Email or Telegram",
-    messagePh: "Short brief — optional",
-    submit: "Discuss project →",
-    privacy: "No spam. Contact is only used to reply.",
-    fastTg: "Need it faster? Message on Telegram →",
+    sub: "Message me on Telegram or submit the structured form — your choice. No obligation.",
+    ctaTelegram: "Message on Telegram",
+    ctaForm: "Open the request form",
+    privacy: "Google Form responses go to a sheet; your contact is only used to follow up.",
   },
   footer: {
     tagline: "VIBECRAFT",
@@ -725,7 +795,6 @@ const en: LandingMessages = {
     rights: "All rights reserved.",
     email: "hello@vibecraft.su",
     tgDirect: "Telegram",
-    tgChannel: "TG channel",
   },
 };
 

@@ -1,10 +1,11 @@
 import type { Lang } from "@/i18n/landing";
+import { telegramDirectUrl } from "@/i18n/landing";
 
 const sameAs = [
   "https://tenchat.ru/vibecraft",
   "https://linkedin.com/company/vibecraft",
   "https://instagram.com/vibecraft",
-  "https://t.me/vibecraft",
+  telegramDirectUrl,
 ];
 
 export function organizationNode(site: string) {

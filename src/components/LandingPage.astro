@@ -1,8 +1,7 @@
 ---
 import type { Lang } from "@/i18n/landing";
-import { getLandingMessages, telegramChannelUrl, telegramDirectUrl } from "@/i18n/landing";
+import { getLandingMessages, telegramDirectUrl } from "@/i18n/landing";
 import HeroIsland from "@/components/hero/HeroIsland.tsx";
-import logoVibecraft from "@/assets/logo_vibecraft.png?url";
 import "@/styles/landing.css";
 
 export interface BlogPreview {
@@ -27,6 +26,9 @@ const manifestLabel = lang === "ru" ? "Манифест" : "Manifesto";
 const menuOpenLabel = lang === "ru" ? "Открыть меню" : "Open menu";
 const menuCloseLabel = lang === "ru" ? "Закрыть меню" : "Close menu";
 const menuNavLabel = lang === "ru" ? "Основная навигация" : "Main navigation";
+
+const googleFormUrl =
+  import.meta.env.PUBLIC_GOOGLE_FORM_URL ?? "https://forms.gle/ydLZdiZhDUurb7hV8";
 ---
 
 <header class="header" data-menu-open-label={menuOpenLabel} data-menu-close-label={menuCloseLabel}>
@@ -35,14 +37,9 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
     <div class="nav-bar">
       <div class="logo-brand">
         <a class="logo-link" href={base}>
-          <img
-            class="logo-img"
-            src={logoVibecraft}
-            alt="Vibecraft"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
+          <span class="logo-wordmark" aria-label="Vibecraft">
+            <span class="logo-vibe">VIBE</span><span class="logo-craft">CRAFT</span>
+          </span>
           <span class="logo-tagline">{m.nav.tagline}</span>
         </a>
       </div>
@@ -66,18 +63,10 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
         <a href="#why-us">{m.nav.benefits}</a>
         <a href="#services">{m.nav.services}</a>
         <a href="#process">{m.nav.process}</a>
-        <a href="#cases">{m.nav.cases}</a>
+        <a href={`${base}/cases`}>{m.nav.cases}</a>
         <a href={`${base}/blog`}>{m.nav.blog}</a>
         <a href={`${base}/manifest`}>{m.nav.manifest}</a>
         <a href="#contact">{m.nav.contact}</a>
-        <a href={telegramChannelUrl} class="nav-tg" target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
-              d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
-            ></path>
-          </svg>
-          <span>{m.nav.tgChannel}</span>
-        </a>
         <div class="lang-switch">
           <a href="/ru/" class:list={[{ "is-active": lang === "ru" }]}>{m.nav.langRu}</a>
           <a href="/en/" class:list={[{ "is-active": lang === "en" }]}>{m.nav.langEn}</a>
@@ -133,7 +122,7 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
     </div>
   </section>
 
-  <section id="methodology" class="section">
+  <section id="methodology" class="section section--ambient-veil">
     <div class="container">
       <h2 class="section-title">{m.methodology.title}</h2>
       <p class="methodology-lead">{m.methodology.lead}</p>
@@ -144,14 +133,14 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
         ))}
       </ul>
       <div class="methodology-cta">
-        <a href="#cases" class="btn btn-outline">
+        <a href={`${base}/cases`} class="btn btn-outline">
           {m.methodology.cta}
         </a>
       </div>
     </div>
   </section>
 
-  <section id="why-us" class="section section--surface">
+  <section id="why-us" class="section section--surface section--ambient-orb">
     <div class="container">
       <h2 class="section-title">{m.whyUs.title}</h2>
       <div class="why-grid">
@@ -190,7 +179,7 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
     </div>
   </section>
 
-  <section id="services" class="section section--surface">
+  <section id="services" class="section section--surface section--ambient-drift">
     <div class="container">
       <h2 class="section-title">{m.services.title}</h2>
       <div class="section-sub max-w-[52rem] mx-auto">{m.services.sub}</div>
@@ -252,7 +241,7 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
     </div>
   </section>
 
-  <section id="cases" class="section section--surface">
+  <section id="cases" class="section section--surface section--ambient-arc">
     <div class="container">
       <h2 class="section-title">{m.cases.title}</h2>
       <div class="cards-grid">
@@ -276,17 +265,28 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
       </div>
       <p class="cases-more">{m.cases.moreLabel}</p>
       <div class="cases-more-actions">
-        <a href={`${base}/blog`} class="btn btn-outline">{m.blogSection.viewAll}</a>
+        <a href={`${base}/cases`} class="btn btn-outline">{m.casesList.viewAll}</a>
       </div>
     </div>
   </section>
 
-  <section id="testimonials" class="section">
+  <section id="testimonials" class="section section--surface">
     <div class="container">
       <h2 class="section-title">{m.testimonials.title}</h2>
-      <div class="testimonial-note">
-        <p>{m.testimonials.note}</p>
+      <div class="testimonials-grid">
+        {m.testimonials.items.map((t) => (
+          <figure class="testimonial-card">
+            <blockquote class="testimonial-quote">
+              <p>«{t.quote}»</p>
+            </blockquote>
+            <figcaption class="testimonial-meta">
+              <span class="testimonial-author">{t.author}</span>
+              <span class="testimonial-role">{t.role} · {t.project}</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
+      <p class="testimonial-note">{m.testimonials.note}</p>
     </div>
   </section>
 
@@ -346,36 +346,18 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
 
   <section id="contact" class="section section--surface">
     <div class="container">
-      <div class="form-card">
+      <div class="form-card form-card--contact">
         <h2 class="section-title">{m.contact.title}</h2>
         <p class="contact-sub">{m.contact.sub}</p>
-        <form action="https://formspree.io/f/xkgnnkjq" method="POST">
-          <input type="hidden" name="lang" value={lang} />
-          <div class="form-group">
-            <label class="sr-only" for="contact-name">{m.contact.namePh}</label>
-            <input id="contact-name" type="text" name="name" placeholder={m.contact.namePh} autocomplete="name" required />
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="contact-email">{m.contact.contactPh}</label>
-            <input
-              id="contact-email"
-              type="text"
-              name="contact"
-              placeholder={m.contact.contactPh}
-              autocomplete="email"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="contact-message">{m.contact.messagePh}</label>
-            <textarea id="contact-message" name="message" rows="4" placeholder={m.contact.messagePh} />
-          </div>
-          <button type="submit" class="btn btn-primary w-full justify-center">{m.contact.submit}</button>
-          <p class="contact-privacy">{m.contact.privacy}</p>
-        </form>
-        <p class="contact-fast-tg">
-          <a href={telegramDirectUrl} target="_blank" rel="noopener noreferrer">{m.contact.fastTg}</a>
-        </p>
+        <div class="contact-cta-row">
+          <a href={telegramDirectUrl} class="btn btn-primary contact-cta" target="_blank" rel="noopener noreferrer">
+            {m.contact.ctaTelegram}
+          </a>
+          <a href={googleFormUrl} class="btn btn-outline contact-cta" target="_blank" rel="noopener noreferrer">
+            {m.contact.ctaForm}
+          </a>
+        </div>
+        <p class="contact-privacy">{m.contact.privacy}</p>
       </div>
     </div>
   </section>
@@ -391,13 +373,9 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
       <div>
         <div class="footer-logo-row">
           <a class="footer-logo-block" href={base}>
-            <img
-              class="footer-logo-img"
-              src={logoVibecraft}
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
+            <span class="logo-wordmark footer-wordmark" aria-label="Vibecraft">
+              <span class="logo-vibe">VIBE</span><span class="logo-craft">CRAFT</span>
+            </span>
             <span class="footer-logo-sub">{m.footer.taglineSub}</span>
           </a>
         </div>
@@ -406,7 +384,7 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
       <div class="footer-links">
         <h4>{m.footer.navCol}</h4>
         <a href="#services">{m.nav.services}</a>
-        <a href="#cases">{m.nav.cases}</a>
+        <a href={`${base}/cases`}>{m.nav.cases}</a>
         <a href="#process">{m.nav.process}</a>
         <a href={`${base}/manifest`}>{manifestLabel}</a>
         <a href={`${base}/blog`}>{m.nav.blog}</a>
@@ -416,7 +394,6 @@ const menuNavLabel = lang === "ru" ? "Основная навигация" : "Ma
         <h4>{m.footer.contactsCol}</h4>
         <a href={`mailto:${m.footer.email}`}>{m.footer.email}</a>
         <a href={telegramDirectUrl} target="_blank" rel="noopener noreferrer">{m.footer.tgDirect}</a>
-        <a href={telegramChannelUrl} target="_blank" rel="noopener noreferrer">{m.footer.tgChannel}</a>
       </div>
     </div>
     <div class="copyright">© {new Date().getFullYear()} Vibecraft. {m.footer.rights}</div>

@@ -5,12 +5,7 @@ import * as THREE from "three";
 const NEON = "#a3f559";
 const NEON_DIM = "#1aff6e";
 
-function useMotionFactor() {
-  if (typeof window === "undefined") return 1;
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0.25 : 1;
-}
-
-function motionFactor() {
+function getMotionFactor() {
   if (typeof window === "undefined") return 1;
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0.25 : 1;
 }
@@ -29,7 +24,7 @@ function NeonRing({
   speed: number;
 }) {
   const ref = useRef<THREE.Mesh>(null);
-  const motion = useMotionFactor();
+  const motion = getMotionFactor();
   useFrame((_, delta) => {
     if (!ref.current) return;
     const d = delta * motion;
@@ -46,7 +41,7 @@ function NeonRing({
 
 function CoreCrystal() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const motion = useMotionFactor();
+  const motion = getMotionFactor();
 
   useFrame((_, delta) => {
     if (!meshRef.current) return;
@@ -57,7 +52,7 @@ function CoreCrystal() {
 
   return (
     <mesh ref={meshRef}>
-      <octahedronGeometry args={[1.4, 2]} />
+      <octahedronGeometry args={[1.68, 2]} />
       <meshStandardMaterial
         color={NEON}
         emissive={NEON_DIM}
@@ -71,7 +66,7 @@ function CoreCrystal() {
 
 function WireOctahedron() {
   const ref = useRef<THREE.Mesh>(null);
-  const motion = useMotionFactor();
+  const motion = getMotionFactor();
   useFrame((_, delta) => {
     if (!ref.current) return;
     const d = delta * motion;
@@ -79,7 +74,7 @@ function WireOctahedron() {
     ref.current.rotation.z += d * 0.1;
   });
   return (
-    <mesh ref={ref} scale={2.1}>
+    <mesh ref={ref} scale={2.48}>
       <octahedronGeometry args={[1, 0]} />
       <meshBasicMaterial color={NEON} wireframe opacity={0.2} transparent />
     </mesh>
@@ -88,7 +83,7 @@ function WireOctahedron() {
 
 function FloatingDots() {
   const ref = useRef<THREE.Points>(null);
-  const motion = useMotionFactor();
+  const motion = getMotionFactor();
 
   const dotGeometry = useMemo(() => {
     const count = 48;
@@ -96,7 +91,7 @@ function FloatingDots() {
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
-      const r = 2.8 + Math.random() * 1.2;
+      const r = 2.75 + Math.random() * 1.1;
       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       pos[i * 3 + 2] = r * Math.cos(phi);
@@ -120,7 +115,7 @@ function FloatingDots() {
 
 function ScrollTilt({ children }: { children: ReactNode }) {
   const group = useRef<THREE.Group>(null);
-  const motion = useMotionFactor();
+  const motion = getMotionFactor();
   useFrame(() => {
     if (!group.current) return;
     const y = typeof window !== "undefined" ? window.scrollY : 0;
@@ -135,7 +130,7 @@ const AUTO_SPEED = 0.22;
 function DragRotation({ children }: { children: ReactNode }) {
   const groupRef = useRef<THREE.Group>(null);
   const { gl } = useThree();
-  const motion = useMotionFactor();
+  const motion = getMotionFactor();
   const dragging = useRef(false);
   const last = useRef({ x: 0, y: 0 });
   const euler = useRef({ x: 0, y: 0 });
@@ -162,7 +157,7 @@ function DragRotation({ children }: { children: ReactNode }) {
       const dx = e.clientX - last.current.x;
       const dy = e.clientY - last.current.y;
       last.current = { x: e.clientX, y: e.clientY };
-      const m = motionFactor();
+      const m = getMotionFactor();
       euler.current.y += dx * DRAG_SENS * m;
       euler.current.x += dy * DRAG_SENS * m;
       const limit = Math.PI * 0.45;
@@ -220,17 +215,17 @@ function Scene() {
         <CoreCrystal />
         <WireOctahedron />
         <FloatingDots />
-        <NeonRing radius={2.4} tube={0.006} rotationX={Math.PI / 3} rotationY={0} speed={0.55} />
+        <NeonRing radius={2.52} tube={0.007} rotationX={Math.PI / 3} rotationY={0} speed={0.55} />
         <NeonRing
-          radius={2.4}
-          tube={0.006}
+          radius={2.52}
+          tube={0.007}
           rotationX={-Math.PI / 4}
           rotationY={Math.PI / 2}
           speed={-0.38}
         />
         <NeonRing
-          radius={2.4}
-          tube={0.006}
+          radius={2.52}
+          tube={0.007}
           rotationX={Math.PI / 6}
           rotationY={Math.PI / 3}
           speed={0.48}
@@ -244,7 +239,7 @@ export default function HeroScene() {
   return (
     <div className="hero-canvas-root">
       <Canvas
-        camera={{ position: [0, 0, 7.2], fov: 42 }}
+        camera={{ position: [0, 0.1, 9.35], fov: 49, near: 0.1, far: 100 }}
         gl={{
           antialias: true,
           alpha: true,

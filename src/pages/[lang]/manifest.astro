@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { type Lang } from "@/i18n/landing";
+import { type Lang, telegramDirectUrl } from "@/i18n/landing";
 import { defaultOgImage, getSiteUrl } from "@/lib/site";
 import { breadcrumbList, organizationNode } from "@/lib/schema";
 
@@ -169,7 +169,7 @@ const graph = [
         {isRu ? "Обсудить проект" : "Discuss project"}
       </a>
       <a
-        href="https://t.me/vibecraft"
+        href={telegramDirectUrl}
         class="inline-flex rounded-[var(--radius)] border border-line px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-neon/40"
       >
         Telegram
