@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# После деплоя подставьте свой домен (sitemap генерируется при сборке)
+Sitemap: https://vibecraft.su/sitemap-index.xml
