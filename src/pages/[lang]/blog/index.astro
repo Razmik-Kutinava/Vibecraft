@@ -62,7 +62,7 @@ const alternates = [
     <ul class="mt-10 space-y-4">
       {
         sorted.map((post) => {
-          const slug = post.id.replace(`${lang}/`, "");
+          const slug = post.id.replace(`${lang}/`, "").replace(/\.md$/i, "");
           return (
             <li>
               <a

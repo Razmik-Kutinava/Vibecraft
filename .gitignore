@@ -24,5 +24,9 @@ Thumbs.db
 # local agent
 .claude/
 
+# internal docs & reports (не нужны для деплоя)
+docs/
+tests/RESULTS.md
+
 # astro
 .astro/

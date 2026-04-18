@@ -12,8 +12,12 @@ const site = process.env.PUBLIC_SITE_URL || "https://vibecraft.su";
 
 export default defineConfig({
   site,
-  redirects: {
-    "/favicon.ico": "/favicon.svg",
+  // Sharp часто недоступен на win32-arm64; noop даёт тот же `<Image />` без ресайза/WebP на билде.
+  // Для полной оптимизации на Linux/x64: `entrypoint: "astro/assets/services/sharp"` и `npm i sharp`.
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/noop",
+    },
   },
   integrations: [react(), tailwind({ applyBaseStyles: false }), sitemap()],
   vite: {

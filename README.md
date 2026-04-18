@@ -33,13 +33,15 @@ npm run dev
 
 ## Переменные окружения
 
-Скопируйте `.env.example` в `.env` и задайте публичный URL без слэша в конце:
+Скопируйте `.env.example` в `.env` и задайте значения:
 
 ```env
 PUBLIC_SITE_URL=https://vibecraft.su
+PUBLIC_FORMSPREE_URL=https://formspree.io/f/ваш_id
 ```
 
-Используется для `site` в `astro.config.mjs` (sitemap, canonical) и в `Layout.astro`.
+- **`PUBLIC_SITE_URL`** — без слэша в конце; sitemap и canonical.
+- **`PUBLIC_FORMSPREE_URL`** — полный URL формы Formspree для блока контактов (опционально: есть fallback в коде).
 
 ## Структура проекта
 
@@ -68,6 +70,7 @@ PUBLIC_SITE_URL=https://vibecraft.su
 
 ## Документация
 
+- [docs/CODE_REVIEW.md](./docs/CODE_REVIEW.md) — что поправили после code review (форма, 404, env, манифест, hero)
 - [docs/SEO.md](./docs/SEO.md) — SEO-чеклист
 - [docs/DEPLOY.md](./docs/DEPLOY.md) — публикация статики
 

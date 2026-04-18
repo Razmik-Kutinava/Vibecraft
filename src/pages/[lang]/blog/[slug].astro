@@ -11,7 +11,8 @@ export async function getStaticPaths() {
   return posts.flatMap((post) => {
     const parts = post.id.split("/");
     const lang = parts[0];
-    const slug = parts.slice(1).join("/");
+    const raw = parts.slice(1).join("/");
+    const slug = raw.replace(/\.md$/i, "");
     if (lang !== "ru" && lang !== "en") return [];
     return [{ params: { lang, slug }, props: { post } }];
   });
