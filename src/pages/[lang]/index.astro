@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import LandingPage from "@/components/LandingPage.astro";
+import { getLandingMessages, type Lang } from "@/i18n/landing";
+import { defaultOgImage, getSiteUrl } from "@/lib/site";
+import { landingJsonLdGraph } from "@/lib/schema";
+import { formatPostDate, readTimeLabel } from "@/lib/formatDate";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const raw = Astro.params.lang;
+const lang = (raw === "ru" || raw === "en" ? raw : "ru") as Lang;
+const m = getLandingMessages(lang);
+const site = getSiteUrl();
+
+const posts = await getCollection("blog", (e) => e.id.startsWith(`${lang}/`));
+const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3);
+const recentPosts = sorted.map((e) => {
+  const slug = e.id.replace(`${lang}/`, "");
+  return {
+    slug,
+    emoji: e.data.emoji ?? "💡",
+    title: e.data.title,
+    description: e.data.description,
+    tag: e.data.tag,
+    dateLabel: formatPostDate(e.data.date, lang),
+    readLabel: readTimeLabel(e.data.readMinutes, lang),
+  };
+});
+
+const graph = landingJsonLdGraph(site, lang);
+const canonicalPath = `/${lang}/`;
+const alternates = [
+  { hreflang: "ru", href: new URL("/ru/", site).href },
+  { hreflang: "en", href: new URL("/en/", site).href },
+  { hreflang: "x-default", href: new URL("/ru/", site).href },
+];
+---
+
+<Layout
+  title={m.seo.title}
+  description={m.seo.description}
+  keywords={m.seo.keywords}
+  canonicalPath={canonicalPath}
+  ogImage={defaultOgImage}
+  author="Vibecraft"
+  robots="index, follow"
+  jsonLd={graph}
+  bodyClass="min-h-screen bg-background text-foreground font-sans antialiased"
+  htmlLang={lang}
+  ogLocale={lang === "ru" ? "ru_RU" : "en_US"}
+  ogLocaleAlternate={lang === "ru" ? ["en_US"] : ["ru_RU"]}
+  alternates={alternates}
+>
+  <LandingPage lang={lang} recentPosts={recentPosts} />
+</Layout>

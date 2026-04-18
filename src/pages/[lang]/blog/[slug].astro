@@ -1,0 +1,119 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { getLandingMessages, type Lang } from "@/i18n/landing";
+import { defaultOgImage, getSiteUrl } from "@/lib/site";
+import { articleJsonLd, breadcrumbList, organizationNode } from "@/lib/schema";
+import { formatPostDate, readTimeLabel } from "@/lib/formatDate";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.flatMap((post) => {
+    const parts = post.id.split("/");
+    const lang = parts[0];
+    const slug = parts.slice(1).join("/");
+    if (lang !== "ru" && lang !== "en") return [];
+    return [{ params: { lang, slug }, props: { post } }];
+  });
+}
+
+const { post } = Astro.props;
+const raw = Astro.params.lang;
+const lang = (raw === "ru" || raw === "en" ? raw : "ru") as Lang;
+const m = getLandingMessages(lang);
+const site = getSiteUrl();
+const slug = Astro.params.slug!;
+const canonicalPath = `/${lang}/blog/${slug}`;
+const pageUrl = new URL(canonicalPath, site).href;
+const { Content } = await render(post);
+
+const published = post.data.date.toISOString();
+const ogImage = post.data.ogImage ?? defaultOgImage;
+
+const graph = [
+  organizationNode(site),
+  breadcrumbList(site, [
+    { name: lang === "ru" ? "Главная" : "Home", path: `/${lang}/` },
+    { name: lang === "ru" ? "Блог" : "Blog", path: `/${lang}/blog` },
+    { name: post.data.title, path: canonicalPath },
+  ]),
+  articleJsonLd({
+    site,
+    url: pageUrl,
+    title: post.data.title,
+    description: post.data.description,
+    datePublished: published,
+    dateModified: published,
+    inLanguage: lang === "ru" ? "ru-RU" : "en-US",
+    image: ogImage,
+  }),
+];
+
+const alternates = [
+  { hreflang: "ru", href: new URL(`/ru/blog/${slug}`, site).href },
+  { hreflang: "en", href: new URL(`/en/blog/${slug}`, site).href },
+  { hreflang: "x-default", href: new URL(`/ru/blog/${slug}`, site).href },
+];
+---
+
+<Layout
+  title={`${post.data.title} | Vibecraft`}
+  description={post.data.description}
+  keywords={post.data.tag}
+  canonicalPath={canonicalPath}
+  ogImage={ogImage}
+  htmlLang={lang}
+  ogLocale={lang === "ru" ? "ru_RU" : "en_US"}
+  ogLocaleAlternate={lang === "ru" ? ["en_US"] : ["ru_RU"]}
+  alternates={alternates}
+  jsonLd={graph}
+  ogType="article"
+  articlePublishedTime={published}
+  articleModifiedTime={published}
+  bodyClass="min-h-screen bg-background text-foreground font-sans antialiased"
+>
+  <main class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <a
+      href={`/${lang}/blog`}
+      class="inline-flex rounded-[var(--radius)] border border-line px-4 py-2 text-sm text-muted-foreground transition hover:border-neon/40 hover:text-foreground"
+    >
+      {m.blogList.backToBlog}
+    </a>
+    <article class="mt-8">
+      <p class="font-mono text-sm text-neon">{post.data.tag}</p>
+      <h1 class="mt-2 text-4xl font-bold text-foreground">{post.data.title}</h1>
+      <p class="mt-3 font-mono text-sm text-muted-foreground">
+        📅 {formatPostDate(post.data.date, lang)} · ⏱ {readTimeLabel(post.data.readMinutes, lang)}
+      </p>
+      <div class="article-prose mt-8 text-foreground/95">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .article-prose :global(h2) {
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--foreground);
+  }
+  .article-prose :global(p) {
+    margin-bottom: 0.85rem;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+  }
+  .article-prose :global(ul) {
+    margin: 0.75rem 0 1rem 1.25rem;
+    list-style: disc;
+    color: var(--muted-foreground);
+  }
+  .article-prose :global(li) {
+    margin-bottom: 0.35rem;
+  }
+  .article-prose :global(strong) {
+    color: var(--foreground);
+  }
+</style>

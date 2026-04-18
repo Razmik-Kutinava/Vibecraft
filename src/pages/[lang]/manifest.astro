@@ -1,0 +1,206 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { type Lang } from "@/i18n/landing";
+import { defaultOgImage, getSiteUrl } from "@/lib/site";
+import { breadcrumbList, organizationNode } from "@/lib/schema";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const raw = Astro.params.lang;
+const lang = (raw === "ru" || raw === "en" ? raw : "ru") as Lang;
+const site = getSiteUrl();
+const base = `/${lang}`;
+
+const isRu = lang === "ru";
+const title = isRu ? "Манифест Vibecraft" : "Vibecraft Manifesto";
+const description = isRu
+  ? "Кто мы, как работаем и какие проекты берём: владение, продакшен, простота и результат."
+  : "Who we are, how we build, and what projects we take: ownership, production, simplicity, and results.";
+const canonicalPath = `/${lang}/manifest`;
+const alternates = [
+  { hreflang: "ru", href: new URL("/ru/manifest", site).href },
+  { hreflang: "en", href: new URL("/en/manifest", site).href },
+  { hreflang: "x-default", href: new URL("/ru/manifest", site).href },
+];
+
+const graph = [
+  organizationNode(site),
+  breadcrumbList(site, [
+    { name: isRu ? "Главная" : "Home", path: `/${lang}/` },
+    { name: isRu ? "Манифест" : "Manifesto", path: canonicalPath },
+  ]),
+];
+---
+
+<Layout
+  title={`${title} | Vibecraft`}
+  description={description}
+  keywords={isRu ? "манифест разработки, разработка для бизнеса, MVP" : "development manifesto, business software, MVP"}
+  canonicalPath={canonicalPath}
+  ogImage={defaultOgImage}
+  htmlLang={lang}
+  ogLocale={isRu ? "ru_RU" : "en_US"}
+  ogLocaleAlternate={isRu ? ["en_US"] : ["ru_RU"]}
+  alternates={alternates}
+  jsonLd={graph}
+  bodyClass="min-h-screen bg-background text-foreground font-sans antialiased"
+>
+  <main class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <a
+      href={`/${lang}/`}
+      class="inline-flex rounded-[var(--radius)] border border-line px-4 py-2 text-sm text-muted-foreground transition hover:border-neon/40 hover:text-foreground"
+    >
+      {isRu ? "← На главную" : "← Back to home"}
+    </a>
+
+    <header class="mt-8">
+      <p class="font-mono text-xs uppercase tracking-widest text-neon">Vibecraft</p>
+      <h1 class="mt-3 text-4xl font-bold text-foreground">{title}</h1>
+      <p class="mt-3 text-muted-foreground leading-relaxed">
+        {
+          isRu
+            ? "Я кодю не для резюме. Я кодю для реальности."
+            : "I do not code for resumes. I code for reality."
+        }
+      </p>
+    </header>
+
+    <article class="manifest-prose mt-8">
+      {
+        isRu ? (
+          <>
+            <p>
+              Меня зовут Размик. До кода я был предпринимателем: бары, столовые, кассовые разрывы, маржа и ежедневная
+              операционка. Я начинал с бумажного блокнота, потом прошёл через подписочные сервисы и понял главное:
+              бизнес нельзя строить на чужой земле.
+            </p>
+            <p>
+              Когда сервис закрывается или меняет правила, страдает не абстрактный «пользователь», а ваш бизнес. После
+              этой боли я выбрал другой подход: владение, продакшен, простота и результат.
+            </p>
+
+            <h2>Как мы работаем</h2>
+            <ul>
+              <li><strong>Владение, а не аренда:</strong> код и данные принадлежат клиенту.</li>
+              <li><strong>Продакшен, а не демо:</strong> результат должен работать в реальной среде.</li>
+              <li><strong>Простота, а не лишняя сложность:</strong> сначала проверяем гипотезу минимальным объёмом.</li>
+              <li><strong>Результат, а не поэзия:</strong> важен эффект для бизнеса, а не эстетика ради эстетики.</li>
+            </ul>
+
+            <h2>Кто мы друг для друга</h2>
+            <p><strong>Сработаемся, если:</strong></p>
+            <ul>
+              <li>вам нужен рабочий запуск, а не бесконечная подготовка;</li>
+              <li>вы хотите владеть кодом и данными;</li>
+              <li>вы готовы стартовать с малого и масштабировать по факту.</li>
+            </ul>
+
+            <p><strong>Не сработаемся, если:</strong></p>
+            <ul>
+              <li>вам важнее ревью каждой строчки, чем запуск и бизнес-результат;</li>
+              <li>нужен формат «дёшево и навсегда» без понимания границ задачи;</li>
+              <li>ожидается «всё и сразу» без проверки гипотезы.</li>
+            </ul>
+
+            <h2>Обещание</h2>
+            <p>
+              Я знаю цену ошибки и потери данных. Поэтому обещание простое: вы владеете тем, что мы создаём, и не
+              переплачиваете за лишнее.
+            </p>
+            <p>
+              <strong>Own Your Stack. Start Small. Validate Fast. Result &gt; Poetry.</strong>
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              I am Razmik. Before writing code, I was an entrepreneur: bars, kitchens, margins, cash gaps, and daily
+              operations. I started with a paper notebook, went through subscription platforms, and learned one thing:
+              you cannot build a business on someone else&apos;s land.
+            </p>
+            <p>
+              When a platform changes rules, your business pays the cost. That is why Vibecraft is built on four
+              principles: ownership, production, simplicity, and outcomes.
+            </p>
+
+            <h2>How we work</h2>
+            <ul>
+              <li><strong>Ownership over rent:</strong> client owns code and data.</li>
+              <li><strong>Production over demos:</strong> software must run in real conditions.</li>
+              <li><strong>Simplicity over complexity:</strong> validate with minimal scope first.</li>
+              <li><strong>Results over poetry:</strong> business impact over cosmetic perfection.</li>
+            </ul>
+
+            <h2>Who we fit with</h2>
+            <p><strong>We fit if:</strong></p>
+            <ul>
+              <li>you want a working launch, not endless preparation;</li>
+              <li>you want to own your stack and data;</li>
+              <li>you can start small and scale after validation.</li>
+            </ul>
+
+            <p><strong>We do not fit if:</strong></p>
+            <ul>
+              <li>line-by-line code reviews matter more than shipping;</li>
+              <li>you expect “cheap forever” without scope discipline;</li>
+              <li>you want everything at once before validating the idea.</li>
+            </ul>
+
+            <h2>Promise</h2>
+            <p>
+              I know the cost of mistakes and data loss. So the promise is simple: you own what we build, and you do
+              not overpay for what you do not need.
+            </p>
+            <p>
+              <strong>Own Your Stack. Start Small. Validate Fast. Result &gt; Poetry.</strong>
+            </p>
+          </>
+        )
+      }
+    </article>
+
+    <section class="mt-10 flex flex-wrap gap-3">
+      <a
+        href={`/${lang}/#contact`}
+        class="inline-flex rounded-[var(--radius)] bg-neon px-5 py-2.5 font-mono text-sm font-bold tracking-wide text-primary-foreground transition hover:bg-neon-dim"
+      >
+        {isRu ? "Обсудить проект" : "Discuss project"}
+      </a>
+      <a
+        href="https://t.me/vibecraft"
+        class="inline-flex rounded-[var(--radius)] border border-line px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-neon/40"
+      >
+        Telegram
+      </a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .manifest-prose :global(h2) {
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--foreground);
+  }
+  .manifest-prose :global(p) {
+    margin-bottom: 0.85rem;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+  }
+  .manifest-prose :global(ul) {
+    margin: 0.75rem 0 1rem 1.25rem;
+    list-style: disc;
+    color: var(--muted-foreground);
+  }
+  .manifest-prose :global(li) {
+    margin-bottom: 0.35rem;
+    line-height: 1.6;
+  }
+  .manifest-prose :global(strong) {
+    color: var(--foreground);
+  }
+</style>

@@ -1,0 +1,18 @@
+---
+const target = "/ru/blog";
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vibecraft — блог</title>
+    <link rel="canonical" href={new URL(target, import.meta.env.PUBLIC_SITE_URL || "https://vibecraft.su").href} />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+  </head>
+  <body
+    style="font-family: 'Space Grotesk', system-ui, sans-serif; padding: 2rem; background: #141414; color: #f7f7f7;"
+  >
+    <p>Перенаправление на <a href={target} style="color: #a3f559;">{target}</a>…</p>
+  </body>
+</html>
