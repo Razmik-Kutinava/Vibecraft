@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+
+# logs
+npm-debug.log*
+pnpm-debug.log*
+
+# env
+.env
+.env.production.local
+
+# os
+.DS_Store
+Thumbs.db
+
+# ide
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# local agent
+.claude/
+
+# astro
+.astro/
