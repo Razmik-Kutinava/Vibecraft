@@ -14,7 +14,7 @@ export function organizationNode(site: string) {
     "@id": `${site}/#organization`,
     name: "Vibecraft",
     url: site,
-    logo: `${site}/favicon.svg`,
+    logo: `${site}/favicon.png`,
     email: "hello@vibecraft.su",
     sameAs,
   };
@@ -26,7 +26,7 @@ export function professionalServiceNode(site: string) {
     "@id": `${site}/#professional-service`,
     name: "Vibecraft",
     url: site,
-    logo: `${site}/favicon.svg`,
+    logo: `${site}/favicon.png`,
     description:
       "MVP и внутренние продукты за 2–4 недели по фикс-цене: приложения, админки, Telegram-боты, сайты с базой под поиск. Права на код, деплой на сторону клиента и ответ по заявке в течение 3 часов в рабочее время.",
     priceRange: "$1000-$3000",
@@ -104,7 +104,7 @@ export function articleJsonLd(opts: {
     publisher: {
       "@type": "Organization",
       "@id": `${opts.site}/#organization`,
-      logo: { "@type": "ImageObject", url: `${opts.site}/favicon.svg` },
+      logo: { "@type": "ImageObject", url: `${opts.site}/favicon.png` },
     },
     ...(image ? { image: [image] } : {}),
   };

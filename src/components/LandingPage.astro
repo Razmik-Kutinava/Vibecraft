@@ -124,19 +124,24 @@ const googleFormUrl =
 
   <section id="methodology" class="section section--ambient-veil">
     <div class="container">
-      <h2 class="section-title">{m.methodology.title}</h2>
-      <p class="methodology-lead">{m.methodology.lead}</p>
-      <p class="methodology-intro">{m.methodology.intro}</p>
-      <ul class="methodology-bullets">
-        {m.methodology.bullets.map((b) => (
-          <li>{b}</li>
-        ))}
-      </ul>
-      <div class="methodology-cta">
-        <a href={`${base}/cases`} class="btn btn-outline">
-          {m.methodology.cta}
-        </a>
-      </div>
+      <details class="mob-details" id="methodology-details">
+        <summary class="mob-details-summary">{m.methodology.title}</summary>
+        <div class="methodology-body">
+          <h2 class="section-title mob-details-heading">{m.methodology.title}</h2>
+          <p class="methodology-lead">{m.methodology.lead}</p>
+          <p class="methodology-intro">{m.methodology.intro}</p>
+          <ul class="methodology-bullets">
+            {m.methodology.bullets.map((b) => (
+              <li>{b}</li>
+            ))}
+          </ul>
+          <div class="methodology-cta">
+            <a href={`${base}/cases`} class="btn btn-outline">
+              {m.methodology.cta}
+            </a>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -145,13 +150,21 @@ const googleFormUrl =
       <h2 class="section-title">{m.whyUs.title}</h2>
       <div class="why-grid">
         {
-          m.whyUs.items.map((item) => (
-            <div class="why-card">
+          m.whyUs.items.map((item, idx) => (
+            <div class:list={["why-card", idx >= 3 ? "why-card--hidden-mob" : null]}>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
             </div>
           ))
         }
+      </div>
+      <div class="why-us-more-wrap">
+        <button
+          class="btn btn-outline why-us-more-btn"
+          data-label-show={lang === "ru" ? "Показать ещё" : "Show more"}
+        >
+          {lang === "ru" ? "Показать ещё" : "Show more"}
+        </button>
       </div>
     </div>
   </section>
@@ -187,17 +200,22 @@ const googleFormUrl =
         {
           m.services.items.map((s) => (
             <div class="card card--service">
-              <div class="card-icon">{s.icon}</div>
-              <h3 class="card--service-title">{s.title}</h3>
-              <div class="service-meta">
-                {s.price}
-                <span class="sep">·</span>
-                {s.timeline}
+              <button class="card--service-header" aria-expanded="false">
+                <div class="card-icon">{s.icon}</div>
+                <h3 class="card--service-title">{s.title}</h3>
+                <div class="service-meta">
+                  {s.price}
+                  <span class="sep">·</span>
+                  {s.timeline}
+                </div>
+                <span class="card--service-chevron" aria-hidden="true"></span>
+              </button>
+              <div class="card--service-collapse">
+                <p class="card--service-desc">{s.desc}</p>
+                <a href="#contact" class="btn btn-primary card--service-cta">
+                  {s.cta}
+                </a>
               </div>
-              <p class="card--service-desc">{s.desc}</p>
-              <a href="#contact" class="btn btn-primary card--service-cta">
-                {s.cta}
-              </a>
             </div>
           ))
         }
@@ -226,9 +244,15 @@ const googleFormUrl =
         {
           m.process.steps.map((st, i) => (
             <div class="step">
-              <div class="step-circle">{i + 1}</div>
-              <h3 class="step-title">{st.title}</h3>
-              <p class="step-desc">{st.desc}</p>
+              <details class="mob-details step-mob-details">
+                <summary class="mob-details-summary step-mob-summary">
+                  <span class="step-circle">{i + 1}</span>
+                  <span class="step-title">{st.title}</span>
+                </summary>
+                <div class="step-circle mob-details-step-circle">{i + 1}</div>
+                <h3 class="step-title mob-details-step-title">{st.title}</h3>
+                <p class="step-desc">{st.desc}</p>
+              </details>
             </div>
           ))
         }
@@ -294,18 +318,27 @@ const googleFormUrl =
     <div class="container">
       <h2 class="section-title">{m.manifestTeaser.title}</h2>
       <div class="manifest-teaser">
-        {m.manifestTeaser.paragraphs.map((p) => <p>{p}</p>)}
-        {
-          m.manifestTeaser.pillars.map((pillar) => (
-            <div class="manifest-pillar">
-              <h3>{pillar.title}</h3>
-              <p>{pillar.text}</p>
-            </div>
-          ))
-        }
-        <p class="manifest-fit">{m.manifestTeaser.fit}</p>
-        <p class="manifest-fit">{m.manifestTeaser.notFit}</p>
-        <p class="manifest-fit">{m.manifestTeaser.closing}</p>
+        {m.manifestTeaser.paragraphs.map((p, i) => <p class:list={[i > 0 ? "manifest-extra-p" : null]}>{p}</p>)}
+        <div class="manifest-body">
+          {
+            m.manifestTeaser.pillars.map((pillar) => (
+              <div class="manifest-pillar">
+                <h3>{pillar.title}</h3>
+                <p>{pillar.text}</p>
+              </div>
+            ))
+          }
+          <p class="manifest-fit">{m.manifestTeaser.fit}</p>
+          <p class="manifest-fit">{m.manifestTeaser.notFit}</p>
+          <p class="manifest-fit">{m.manifestTeaser.closing}</p>
+        </div>
+        <button
+          class="btn btn-outline manifest-read-more-btn"
+          data-label-more={lang === "ru" ? "Читать далее" : "Read more"}
+          data-label-less={lang === "ru" ? "Свернуть" : "Collapse"}
+        >
+          {lang === "ru" ? "Читать далее" : "Read more"}
+        </button>
         <div class="manifest-teaser-actions">
           <a href={`${base}/manifest`} class="btn btn-outline">
             {m.manifestTeaser.linkLabel}
@@ -321,8 +354,8 @@ const googleFormUrl =
       <div class="section-sub">{m.blogSection.sub}</div>
       <div class="cards-grid">
         {
-          recentPosts.map((post) => (
-            <a href={`${base}/blog/${post.slug}`} class="blog-card">
+          recentPosts.map((post, idx) => (
+            <a href={`${base}/blog/${post.slug}`} class:list={["blog-card", idx > 0 ? "blog-card--hidden-mob" : null]}>
               <div class="blog-image">{post.emoji}</div>
               <div class="blog-content">
                 <span class="blog-tag">{post.tag}</span>
@@ -339,6 +372,12 @@ const googleFormUrl =
       </div>
 
       <div class="blog-section-actions">
+        <button
+          class="btn btn-outline blog-show-all-btn"
+          data-label={lang === "ru" ? "Все статьи" : "All articles"}
+        >
+          {lang === "ru" ? "Все статьи" : "All articles"}
+        </button>
         <a href={`${base}/blog`} class="btn btn-primary">{m.blogSection.viewAll}</a>
       </div>
     </div>
@@ -433,4 +472,58 @@ const googleFormUrl =
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
+
+  // --- Mobile accordion/collapse behaviours ---
+  // Only activate on mobile (<=767px). On desktop these elements are hidden/overridden by CSS.
+
+  // Why-us: "Show more" button
+  const whyMoreBtn = document.querySelector(".why-us-more-btn");
+  if (whyMoreBtn) {
+    whyMoreBtn.addEventListener("click", function () {
+      document.querySelectorAll(".why-card--hidden-mob").forEach((card) => {
+        card.classList.remove("why-card--hidden-mob");
+      });
+      this.closest(".why-us-more-wrap")?.remove();
+    });
+  }
+
+  // Services: toggle card expand
+  document.querySelectorAll(".card--service-header").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const card = this.closest(".card--service");
+      if (!card) return;
+      const expanded = card.classList.toggle("card--service-expanded");
+      this.setAttribute("aria-expanded", expanded ? "true" : "false");
+    });
+  });
+
+  // Manifest: "Read more" button
+  const manifestBtn = document.querySelector(".manifest-read-more-btn");
+  if (manifestBtn) {
+    manifestBtn.addEventListener("click", function () {
+      const body = document.querySelector(".manifest-body");
+      const extraPs = document.querySelectorAll(".manifest-extra-p");
+      const isOpen = body?.classList.contains("manifest-body--open");
+      if (isOpen) {
+        body?.classList.remove("manifest-body--open");
+        extraPs.forEach((p) => p.classList.remove("manifest-extra-p--open"));
+        this.textContent = this.dataset.labelMore ?? "Read more";
+      } else {
+        body?.classList.add("manifest-body--open");
+        extraPs.forEach((p) => p.classList.add("manifest-extra-p--open"));
+        this.textContent = this.dataset.labelLess ?? "Collapse";
+      }
+    });
+  }
+
+  // Blog: "Show all" button
+  const blogShowAllBtn = document.querySelector(".blog-show-all-btn");
+  if (blogShowAllBtn) {
+    blogShowAllBtn.addEventListener("click", function () {
+      document.querySelectorAll(".blog-card--hidden-mob").forEach((card) => {
+        card.classList.remove("blog-card--hidden-mob");
+      });
+      this.remove();
+    });
+  }
 </script>

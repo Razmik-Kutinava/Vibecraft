@@ -252,6 +252,9 @@ export default function HeroScene() {
           el.addEventListener("webglcontextlost", (e) => {
             e.preventDefault();
           });
+          el.addEventListener("webglcontextrestored", () => {
+            gl.forceContextRestore();
+          });
         }}
       >
         <Scene />

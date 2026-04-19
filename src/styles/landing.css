@@ -2184,3 +2184,308 @@ textarea:focus {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== mob-details: desktop — transparent, mobile — real <details> ===== */
+@media (min-width: 768px) {
+  /* Make <details class="mob-details"> behave as plain flow on desktop */
+  .mob-details {
+    display: contents;
+  }
+  .mob-details > .mob-details-summary {
+    display: none;
+  }
+  /* Show the heading that is inside methodology-body */
+  .mob-details-heading {
+    display: block;
+  }
+  /* Step: on desktop hide the summary duplicates, show normal circle/title */
+  .mob-details.step-mob-details {
+    display: contents;
+  }
+  .mob-details.step-mob-details > .mob-details-summary.step-mob-summary {
+    display: none;
+  }
+  .mob-details-step-circle,
+  .mob-details-step-title {
+    display: block;
+  }
+
+  /* Why-us more button hidden on desktop */
+  .why-us-more-wrap {
+    display: none;
+  }
+
+  /* Service cards: no toggle on desktop */
+  .card--service-header {
+    display: contents;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: default;
+    text-align: left;
+    width: 100%;
+  }
+  .card--service-header .card--service-chevron {
+    display: none;
+  }
+  .card--service-collapse {
+    display: contents;
+  }
+
+  /* Manifest: body always visible on desktop */
+  .manifest-body {
+    display: block;
+  }
+  .manifest-extra-p {
+    display: block;
+  }
+  .manifest-read-more-btn {
+    display: none;
+  }
+
+  /* Blog show-all button hidden on desktop */
+  .blog-show-all-btn {
+    display: none;
+  }
+  .blog-card--hidden-mob {
+    display: block;
+  }
+}
+
+/* ===== Mobile-only styles (max-width: 767px) ===== */
+@media (max-width: 767px) {
+
+  /* --- 1. Methodology accordion --- */
+  .mob-details {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 4px);
+    overflow: hidden;
+  }
+
+  .mob-details-summary {
+    list-style: none;
+    cursor: pointer;
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.25rem, 5vw, 1.875rem);
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+    padding: 16px 48px 16px 18px;
+    position: relative;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .mob-details-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mob-details-summary::after {
+    content: "+";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: "Space Mono", ui-monospace, monospace;
+    font-size: 1.25rem;
+    color: var(--neon);
+    line-height: 1;
+  }
+
+  .mob-details[open] > .mob-details-summary::after {
+    content: "−";
+  }
+
+  .methodology-body {
+    padding: 4px 18px 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* Hide the h2 inside the body (summary already shows it) */
+  .mob-details-heading {
+    display: none;
+  }
+
+  /* --- 2. Why-us show more --- */
+  .why-card--hidden-mob {
+    display: none;
+  }
+
+  .why-us-more-wrap {
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  /* --- 3. Services card toggle --- */
+  .card--service-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    font-family: inherit;
+    position: relative;
+  }
+
+  .card--service-chevron {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .card--service-chevron::before,
+  .card--service-chevron::after {
+    content: "";
+    position: absolute;
+    background: var(--neon);
+    border-radius: 2px;
+    transition: transform 0.2s ease;
+  }
+
+  /* Chevron down arrow via two lines */
+  .card--service-chevron::before {
+    width: 10px;
+    height: 2px;
+    top: 9px;
+    left: 1px;
+    transform: rotate(45deg);
+  }
+
+  .card--service-chevron::after {
+    width: 10px;
+    height: 2px;
+    top: 9px;
+    right: 1px;
+    transform: rotate(-45deg);
+  }
+
+  .card--service-expanded .card--service-chevron::before {
+    transform: rotate(-45deg);
+  }
+
+  .card--service-expanded .card--service-chevron::after {
+    transform: rotate(45deg);
+  }
+
+  .card--service-collapse {
+    display: none;
+    padding-top: 12px;
+    width: 100%;
+  }
+
+  .card--service-expanded .card--service-collapse {
+    display: block;
+  }
+
+  /* Keep service card flex layout on mobile */
+  .card.card--service {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- 4. Process steps accordion --- */
+  .step-mob-details {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 4px);
+    text-align: left;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .step-mob-summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 48px 14px 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--foreground);
+    text-wrap: balance;
+  }
+
+  .step-mob-summary .step-circle {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .step-mob-summary .step-title {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  /* Inside <details>: show the desc, hide duplicate circle/title */
+  .mob-details-step-circle,
+  .mob-details-step-title {
+    display: none;
+  }
+
+  .step-mob-details .step-desc {
+    padding: 0 14px 14px;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  .step-mob-details[open] .step-desc {
+    padding-top: 12px;
+  }
+
+  /* Keep step-circle center alignment for non-mob summary circle */
+  .step-mob-details .step-mob-summary .step-circle {
+    display: flex;
+  }
+
+  /* --- 5. Manifest read more --- */
+  .manifest-body {
+    display: none;
+  }
+
+  .manifest-body.manifest-body--open {
+    display: block;
+  }
+
+  .manifest-extra-p {
+    display: none;
+  }
+
+  .manifest-extra-p.manifest-extra-p--open {
+    display: block;
+  }
+
+  .manifest-read-more-btn {
+    display: block;
+    margin: 12px auto 8px;
+  }
+
+  /* --- 6. Blog show all --- */
+  .blog-card--hidden-mob {
+    display: none;
+  }
+
+  .blog-section-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .blog-show-all-btn {
+    width: 100%;
+    max-width: 24rem;
+    justify-content: center;
+  }
+}

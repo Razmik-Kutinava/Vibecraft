@@ -1,0 +1,48 @@
+---
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items?: BreadcrumbItem[];
+}
+
+const { items = [] } = Astro.props;
+const site = import.meta.env.PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://vibecraft.su";
+
+// Генерируем JSON-LD разметку BreadcrumbList
+const breadcrumbList = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: item.url.startsWith("http") ? item.url : `${site}${item.url}`,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbList)} />
+
+{items.length > 0 && (
+  <nav aria-label="breadcrumb" class="text-sm text-muted-foreground mb-4">
+    <ol class="flex flex-wrap gap-2">
+      {items.map((item, index) => (
+        <>
+          {index > 0 && <li class="text-muted-foreground">/</li>}
+          <li>
+            {index === items.length - 1 ? (
+              <span>{item.name}</span>
+            ) : (
+              <a href={item.url} class="hover:text-foreground transition-colors">
+                {item.name}
+              </a>
+            )}
+          </li>
+        </>
+      ))}
+    </ol>
+  </nav>
+)}
