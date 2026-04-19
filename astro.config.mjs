@@ -19,7 +19,23 @@ export default defineConfig({
       entrypoint: "astro/assets/services/noop",
     },
   },
-  integrations: [react(), tailwind({ applyBaseStyles: false }), sitemap()],
+  integrations: [
+    react(),
+    tailwind({ applyBaseStyles: false }),
+    sitemap({
+      // Исключаем redirect-страницы — Google их не индексирует
+      filter: (page) =>
+        page !== `${site}/` &&
+        page !== `${site}/blog/`,
+      i18n: {
+        defaultLocale: "ru",
+        locales: {
+          ru: "ru-RU",
+          en: "en-US",
+        },
+      },
+    }),
+  ],
   vite: {
     resolve: {
       alias: {
