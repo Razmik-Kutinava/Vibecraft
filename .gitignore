@@ -28,5 +28,8 @@ Thumbs.db
 docs/
 tests/RESULTS.md
 
+# deploy credentials
+.env.deploy
+
 # astro
 .astro/
