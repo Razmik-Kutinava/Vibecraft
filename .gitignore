@@ -24,8 +24,9 @@ Thumbs.db
 # local agent
 .claude/
 
-# internal docs & reports (не нужны для деплоя)
-docs/
+# internal docs & reports (не нужны для деплоя); гайд по деплою ведём в репо
+docs/**
+!docs/DEPLOY.md
 tests/RESULTS.md
 
 # deploy credentials
