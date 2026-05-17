@@ -1502,6 +1502,21 @@ textarea:focus {
   border-bottom-color: var(--neon-dim);
 }
 
+.hero-trust-line {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.hero-trust-line:hover {
+  color: var(--foreground);
+  border-bottom-color: color-mix(in oklch, var(--foreground) 30%, transparent);
+}
+
 /* Для кого: первая карточка на всю ширину, две ниже */
 .audience-grid {
   display: grid;

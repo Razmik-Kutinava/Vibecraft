@@ -17,6 +17,7 @@ export interface LandingMessages {
   hero: {
     h1: string;
     lead: string;
+    trustLine: string;
     ctaPrimary: string;
     ctaTelegram: string;
   };
@@ -93,6 +94,7 @@ const ru: LandingMessages = {
   hero: {
     h1: "Лендинг под ключ. Astro + Svelte. С формой заявок и базой — или без, под вашу задачу.",
     lead: "Делаем быстрые, качественные лендинги для бизнеса. Прямой контакт с разработчиком — без менеджеров и переплат за структуру студии.",
+    trustLine: "Реализованные проекты — в HoReCa, логистике и сфере услуг. Разборы в блоге →",
     ctaPrimary: "Обсудить проект",
     ctaTelegram: "Написать в Telegram →",
   },
@@ -102,7 +104,7 @@ const ru: LandingMessages = {
       {
         icon: "→",
         title: "Бизнес и специалисты",
-        subtitle: "основная ЦА",
+        subtitle: "",
         body: "Стоматологи, строители, юристы, кафе, фотографы, агентства — всем нужен сайт, который выглядит и работает. Без разработчика в штате, без ожидания и переплат за лишние прослойки.",
         featured: true,
       },
@@ -249,6 +251,7 @@ const en: LandingMessages = {
   hero: {
     h1: "Landing page, done right. Astro + Svelte. With a lead form and database — or without, your call.",
     lead: "Fast, quality landing pages for businesses. Direct contact with the engineer — no account managers, no agency overhead.",
+    trustLine: "Delivered projects in HoReCa, logistics and services — breakdowns in the blog →",
     ctaPrimary: "Discuss project",
     ctaTelegram: "Message on Telegram →",
   },
@@ -258,7 +261,7 @@ const en: LandingMessages = {
       {
         icon: "→",
         title: "Businesses and specialists",
-        subtitle: "primary ICP",
+        subtitle: "",
         body: "Dentists, builders, lawyers, cafes, photographers, agencies — everyone needs a site that looks good and works. No in-house developer, no long waits, no agency markups.",
         featured: true,
       },
