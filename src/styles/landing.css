@@ -1945,6 +1945,9 @@ textarea:focus {
 
   #services .cards-grid--services {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .process-steps {
@@ -2011,8 +2014,11 @@ textarea:focus {
   }
 
   #services .cards-grid--services {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #services .cards-grid--services .card--service {
