@@ -38,6 +38,7 @@ export interface LandingMessages {
       price: string;
       timeline: string;
       desc: string;
+      features: string[];
       cta: string;
     }[];
   };
@@ -90,7 +91,7 @@ const ru: LandingMessages = {
     langEn: "EN",
   },
   hero: {
-    h1: "Лендинг под ключ. Astro + Svelte. С базой или без.",
+    h1: "Лендинг под ключ. Astro + Svelte. С формой заявок и базой — или без, под вашу задачу.",
     lead: "Делаем быстрые, качественные лендинги для бизнеса. Прямой контакт с разработчиком — без менеджеров и переплат за структуру студии.",
     ctaPrimary: "Обсудить проект",
     ctaTelegram: "Написать в Telegram →",
@@ -126,8 +127,8 @@ const ru: LandingMessages = {
     title: "Почему Vibecraft",
     items: [
       {
-        title: "Дороже рынка — за результат",
-        text: "Не работаем в нижнем ценовом сегменте. Платите за скорость, аккуратный код и лендинг, который не придётся переделывать через месяц.",
+        title: "Платите за результат, не за часы",
+        text: "Фиксированная цена за готовый лендинг — без почасовки и скрытых расходов. Знаете что получите до старта.",
       },
       {
         title: "Делаем быстро",
@@ -160,7 +161,15 @@ const ru: LandingMessages = {
         title: "Лендинг",
         price: "от $500",
         timeline: "3–7 дней",
-        desc: "Чистый лендинг без базы данных. Astro + Svelte, адаптив, SEO, деплой. Быстро и по делу.",
+        desc: "Чистый лендинг без базы данных. Astro + Svelte, быстро и по делу.",
+        features: [
+          "Адаптив под мобилку и десктоп",
+          "SEO-разметка из коробки",
+          "Lighthouse Performance 90+",
+          "Деплой на ваш домен",
+          "Исходники и все доступы",
+          "14 дней баг-фикса",
+        ],
         cta: "Обсудить →",
       },
       {
@@ -169,6 +178,14 @@ const ru: LandingMessages = {
         price: "от $800",
         timeline: "1–2 недели",
         desc: "Лендинг + форма сбора заявок, база данных, уведомления в Telegram. Заявка пришла — сразу видите.",
+        features: [
+          "Всё из тарифа «Лендинг»",
+          "Форма заявок с валидацией",
+          "База данных для хранения лидов",
+          "Уведомления в Telegram",
+          "Панель просмотра заявок",
+          "14 дней баг-фикса",
+        ],
         cta: "Обсудить →",
       },
     ],
@@ -196,8 +213,8 @@ const ru: LandingMessages = {
     title: "Расскажите о задаче",
     sub: "Напишите в Telegram или оставьте заявку в форме — как удобнее. Без обязательств.",
     ctaTelegram: "Написать в Telegram",
-    ctaForm: "Заполнить форму заявки",
-    privacy: "Форма на Google: ответы в таблице; контакт только для связи по заявке.",
+    ctaForm: "Оставить заявку",
+    privacy: "Контакт используется только для ответа по вашей задаче.",
   },
   footer: {
     tagline: "VIBECRAFT",
@@ -230,7 +247,7 @@ const en: LandingMessages = {
     langEn: "EN",
   },
   hero: {
-    h1: "Landing page, done right. Astro + Svelte. With or without a database.",
+    h1: "Landing page, done right. Astro + Svelte. With a lead form and database — or without, your call.",
     lead: "Fast, quality landing pages for businesses. Direct contact with the engineer — no account managers, no agency overhead.",
     ctaPrimary: "Discuss project",
     ctaTelegram: "Message on Telegram →",
@@ -266,8 +283,8 @@ const en: LandingMessages = {
     title: "Why Vibecraft",
     items: [
       {
-        title: "Above market — for a reason",
-        text: "We don't compete in the cheap segment. You pay for speed, clean code, and a landing you won't need to redo in a month.",
+        title: "Pay for the result, not the hours",
+        text: "Fixed price for a finished landing — no hourly billing, no hidden costs. You know what you get before we start.",
       },
       {
         title: "We ship fast",
@@ -300,7 +317,15 @@ const en: LandingMessages = {
         title: "Landing page",
         price: "from $500",
         timeline: "3–7 days",
-        desc: "Clean landing without a database. Astro + Svelte, responsive, SEO, deploy. Fast and to the point.",
+        desc: "Clean landing without a database. Astro + Svelte, fast and to the point.",
+        features: [
+          "Responsive — mobile and desktop",
+          "SEO markup out of the box",
+          "Lighthouse Performance 90+",
+          "Deploy to your domain",
+          "Source code and all access",
+          "14 days bugfix",
+        ],
         cta: "Discuss →",
       },
       {
@@ -309,6 +334,14 @@ const en: LandingMessages = {
         price: "from $800",
         timeline: "1–2 weeks",
         desc: "Landing + lead capture form, database, Telegram notifications. Lead comes in — you see it immediately.",
+        features: [
+          "Everything in Landing page",
+          "Lead form with validation",
+          "Database to store submissions",
+          "Telegram notifications",
+          "Submissions panel",
+          "14 days bugfix",
+        ],
         cta: "Discuss →",
       },
     ],
@@ -336,8 +369,8 @@ const en: LandingMessages = {
     title: "Tell me about the task",
     sub: "Message me on Telegram or submit the form — your choice. No obligation.",
     ctaTelegram: "Message on Telegram",
-    ctaForm: "Open the request form",
-    privacy: "Google Form responses go to a sheet; your contact is only used to follow up.",
+    ctaForm: "Submit a request",
+    privacy: "Your contact is only used to follow up on your request.",
   },
   footer: {
     tagline: "VIBECRAFT",

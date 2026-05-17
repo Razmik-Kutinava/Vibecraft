@@ -976,6 +976,31 @@ section[id] {
   margin-bottom: 0;
 }
 
+#services .cards-grid--services .card--service .card--service-features {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#services .cards-grid--services .card--service .card--service-features li {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  padding-left: 1.1em;
+  position: relative;
+}
+
+#services .cards-grid--services .card--service .card--service-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--neon);
+  font-size: 0.8em;
+  top: 1px;
+}
+
 #services .cards-grid--services .card--service .card--service-cta {
   margin-top: auto;
   width: 100%;

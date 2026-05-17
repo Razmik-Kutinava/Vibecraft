@@ -159,6 +159,9 @@ const googleFormUrl =
               </button>
               <div class="card--service-collapse">
                 <p class="card--service-desc">{s.desc}</p>
+                <ul class="card--service-features">
+                  {s.features.map((f) => <li>{f}</li>)}
+                </ul>
                 <a href="#contact" class="btn btn-primary card--service-cta">
                   {s.cta}
                 </a>
