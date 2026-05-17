@@ -43,6 +43,16 @@ export interface LandingMessages {
       cta: string;
     }[];
   };
+  portfolio: {
+    title: string;
+    items: {
+      name: string;
+      url: string;
+      description: string;
+      tags: string[];
+      cta: string;
+    }[];
+  };
   midCta: { title: string; sub: string; btn: string };
   blogSection: { title: string; sub: string; viewAll: string };
   blogList: {
@@ -189,6 +199,19 @@ const ru: LandingMessages = {
           "14 дней баг-фикса",
         ],
         cta: "Обсудить →",
+      },
+    ],
+  },
+  portfolio: {
+    title: "Пример работы",
+    items: [
+      {
+        name: "HayPsy",
+        url: "https://haypsy.am",
+        description:
+          "Лендинг для первой армянской платформы психологической помощи. Сбор листа ожидания с конверсионной формой и скидкой 30% на первую сессию. Запуск приложения — осень 2026.",
+        tags: ["Astro", "Svelte", "Лендинг", "Форма заявок", "EN / RU / HY"],
+        cta: "Открыть сайт →",
       },
     ],
   },
@@ -346,6 +369,19 @@ const en: LandingMessages = {
           "14 days bugfix",
         ],
         cta: "Discuss →",
+      },
+    ],
+  },
+  portfolio: {
+    title: "Example work",
+    items: [
+      {
+        name: "HayPsy",
+        url: "https://haypsy.am",
+        description:
+          "Landing page for the first pan-Armenian psychology platform. Waitlist collection with a lead form and 30% off for early signups. App launch target: autumn 2026.",
+        tags: ["Astro", "Svelte", "Landing", "Lead form", "EN / RU / HY"],
+        cta: "Visit site →",
       },
     ],
   },

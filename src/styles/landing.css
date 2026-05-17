@@ -1827,6 +1827,80 @@ textarea:focus {
   padding: 40px 0;
 }
 
+/* Portfolio */
+.portfolio-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.portfolio-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 24px 28px;
+  transition: border-color 0.2s;
+}
+
+.portfolio-card:hover {
+  border-color: color-mix(in oklch, var(--neon) 40%, transparent);
+}
+
+.portfolio-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.portfolio-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--foreground);
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+.portfolio-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--neon);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklch, var(--neon) 40%, transparent);
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.portfolio-link:hover {
+  color: var(--neon-dim);
+  border-bottom-color: var(--neon-dim);
+}
+
+.portfolio-desc {
+  font-size: 0.9375rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+
+.portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.portfolio-tag {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--neon);
+  background: color-mix(in oklch, var(--neon) 8%, transparent);
+  border: 1px solid color-mix(in oklch, var(--neon) 25%, transparent);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
 .mid-cta-inner {
   text-align: center;
   max-width: 32rem;
