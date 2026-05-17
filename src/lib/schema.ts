@@ -28,8 +28,8 @@ export function professionalServiceNode(site: string) {
     url: site,
     logo: `${site}/favicon.png`,
     description:
-      "MVP и внутренние продукты за 2–4 недели по фикс-цене: приложения, админки, Telegram-боты, сайты с базой под поиск. Права на код, деплой на сторону клиента и ответ по заявке в течение 3 часов в рабочее время.",
-    priceRange: "$1000-$3000",
+      "Лендинги на Astro и Svelte под ключ — с базой данных и без. Передача исходников, деплой на сервер клиента, SEO из коробки. От $500.",
+    priceRange: "$500-$800",
     address: { "@type": "PostalAddress", addressCountry: "AM" },
     contactPoint: {
       "@type": "ContactPoint",
@@ -39,13 +39,21 @@ export function professionalServiceNode(site: string) {
     },
     serviceOffer: {
       "@type": "Service",
-      serviceType: "MVP Development",
-      offers: {
-        "@type": "Offer",
-        priceCurrency: "USD",
-        minPrice: "1000",
-        maxPrice: "3000",
-      },
+      serviceType: "Landing Page Development",
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Лендинг",
+          priceCurrency: "USD",
+          price: "500",
+        },
+        {
+          "@type": "Offer",
+          name: "Лендинг с базой данных",
+          priceCurrency: "USD",
+          price: "800",
+        },
+      ],
     },
     sameAs,
     parentOrganization: { "@id": `${site}/#organization` },

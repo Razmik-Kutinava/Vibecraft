@@ -22,7 +22,6 @@ interface Props {
 const { lang, recentPosts } = Astro.props;
 const m = getLandingMessages(lang);
 const base = `/${lang}`;
-const manifestLabel = lang === "ru" ? "Манифест" : "Manifesto";
 const menuOpenLabel = lang === "ru" ? "Открыть меню" : "Open menu";
 const menuCloseLabel = lang === "ru" ? "Закрыть меню" : "Close menu";
 const menuNavLabel = lang === "ru" ? "Основная навигация" : "Main navigation";
@@ -62,10 +61,7 @@ const googleFormUrl =
       <div class="nav-panel-inner">
         <a href="#why-us">{m.nav.benefits}</a>
         <a href="#services">{m.nav.services}</a>
-        <a href="#process">{m.nav.process}</a>
-        <a href={`${base}/cases`}>{m.nav.cases}</a>
         <a href={`${base}/blog`}>{m.nav.blog}</a>
-        <a href={`${base}/manifest`}>{m.nav.manifest}</a>
         <a href="#contact">{m.nav.contact}</a>
         <div class="lang-switch">
           <a href="/ru/" class:list={[{ "is-active": lang === "ru" }]}>{m.nav.langRu}</a>
@@ -84,9 +80,6 @@ const googleFormUrl =
         <div class="hero-inner">
           <h1>{m.hero.h1}</h1>
           <p>{m.hero.lead}</p>
-          <ul class="hero-bullets">
-            {m.hero.bullets.map((line) => <li>{line}</li>)}
-          </ul>
           <div class="hero-actions">
             <a href="#contact" class="btn btn-primary">{m.hero.ctaPrimary}</a>
             <a href={telegramDirectUrl} class="hero-tg-link" target="_blank" rel="noopener noreferrer">{m.hero.ctaTelegram}</a>
@@ -122,29 +115,6 @@ const googleFormUrl =
     </div>
   </section>
 
-  <section id="methodology" class="section section--ambient-veil">
-    <div class="container">
-      <details class="mob-details" id="methodology-details">
-        <summary class="mob-details-summary">{m.methodology.title}</summary>
-        <div class="methodology-body">
-          <h2 class="section-title mob-details-heading">{m.methodology.title}</h2>
-          <p class="methodology-lead">{m.methodology.lead}</p>
-          <p class="methodology-intro">{m.methodology.intro}</p>
-          <ul class="methodology-bullets">
-            {m.methodology.bullets.map((b) => (
-              <li>{b}</li>
-            ))}
-          </ul>
-          <div class="methodology-cta">
-            <a href={`${base}/cases`} class="btn btn-outline">
-              {m.methodology.cta}
-            </a>
-          </div>
-        </div>
-      </details>
-    </div>
-  </section>
-
   <section id="why-us" class="section section--surface section--ambient-orb">
     <div class="container">
       <h2 class="section-title">{m.whyUs.title}</h2>
@@ -165,29 +135,6 @@ const googleFormUrl =
         >
           {lang === "ru" ? "Показать ещё" : "Show more"}
         </button>
-      </div>
-    </div>
-  </section>
-
-  <section id="objections" class="section">
-    <div class="container">
-      <h2 class="section-title">{m.objections.title}</h2>
-      <div class="objections-accordion">
-        {
-          m.objections.items.map((o) => (
-            <details class="objection-details">
-              <summary class="objection-summary">{o.q}</summary>
-              <div class="objection-a-wrap">
-                <p class="objection-a">{o.a}</p>
-              </div>
-            </details>
-          ))
-        }
-      </div>
-      <div class="objections-cta">
-        <a href={telegramDirectUrl} class="hero-tg-link" target="_blank" rel="noopener noreferrer">
-          {m.objections.ctaTelegram}
-        </a>
       </div>
     </div>
   </section>
@@ -220,12 +167,6 @@ const googleFormUrl =
           ))
         }
       </div>
-      <div class="services-custom">
-        <p>{m.services.customHint}</p>
-        <a href="#contact" class="btn btn-outline">
-          {m.services.customCta}
-        </a>
-      </div>
     </div>
   </section>
 
@@ -234,117 +175,6 @@ const googleFormUrl =
       <p class="mid-cta-title">{m.midCta.title}</p>
       <p class="mid-cta-sub">{m.midCta.sub}</p>
       <a href="#contact" class="btn btn-primary">{m.midCta.btn}</a>
-    </div>
-  </section>
-
-  <section id="process" class="section">
-    <div class="container">
-      <h2 class="section-title">{m.process.title}</h2>
-      <div class="process-steps">
-        {
-          m.process.steps.map((st, i) => (
-            <div class="step">
-              <details class="mob-details step-mob-details">
-                <summary class="mob-details-summary step-mob-summary">
-                  <span class="step-circle">{i + 1}</span>
-                  <span class="step-title">{st.title}</span>
-                </summary>
-                <div class="step-circle mob-details-step-circle">{i + 1}</div>
-                <h3 class="step-title mob-details-step-title">{st.title}</h3>
-                <p class="step-desc">{st.desc}</p>
-              </details>
-            </div>
-          ))
-        }
-      </div>
-      <div class="audience-cta">
-        <a href="#contact" class="btn btn-primary">
-          {m.process.cta}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="cases" class="section section--surface section--ambient-arc">
-    <div class="container">
-      <h2 class="section-title">{m.cases.title}</h2>
-      <div class="cards-grid">
-        {
-          m.cases.items.map((c) => (
-            <div class="case-card case-card--rich">
-              <div class="card-icon">{c.icon}</div>
-              <h3>{c.title}</h3>
-              <p class="case-meta-line">{c.meta}</p>
-              <p class="case-label">{lang === "ru" ? "Проблема" : "Problem"}</p>
-              <p>{c.problem}</p>
-              <p class="case-label">{lang === "ru" ? "Решение" : "Solution"}</p>
-              <p>{c.solution}</p>
-              <p class="case-result-line">📈 {lang === "ru" ? "Результат" : "Result"}: {c.result}</p>
-              <a href={`${base}${c.readMoreHref}`} class="case-readmore">
-                {c.readMore}
-              </a>
-            </div>
-          ))
-        }
-      </div>
-      <p class="cases-more">{m.cases.moreLabel}</p>
-      <div class="cases-more-actions">
-        <a href={`${base}/cases`} class="btn btn-outline">{m.casesList.viewAll}</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonials" class="section section--surface">
-    <div class="container">
-      <h2 class="section-title">{m.testimonials.title}</h2>
-      <div class="testimonials-grid">
-        {m.testimonials.items.map((t) => (
-          <figure class="testimonial-card">
-            <blockquote class="testimonial-quote">
-              <p>«{t.quote}»</p>
-            </blockquote>
-            <figcaption class="testimonial-meta">
-              <span class="testimonial-author">{t.author}</span>
-              <span class="testimonial-role">{t.role} · {t.project}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <p class="testimonial-note">{m.testimonials.note}</p>
-    </div>
-  </section>
-
-  <section id="manifest" class="section section--surface">
-    <div class="container">
-      <h2 class="section-title">{m.manifestTeaser.title}</h2>
-      <div class="manifest-teaser">
-        {m.manifestTeaser.paragraphs.map((p, i) => <p class:list={[i > 0 ? "manifest-extra-p" : null]}>{p}</p>)}
-        <div class="manifest-body">
-          {
-            m.manifestTeaser.pillars.map((pillar) => (
-              <div class="manifest-pillar">
-                <h3>{pillar.title}</h3>
-                <p>{pillar.text}</p>
-              </div>
-            ))
-          }
-          <p class="manifest-fit">{m.manifestTeaser.fit}</p>
-          <p class="manifest-fit">{m.manifestTeaser.notFit}</p>
-          <p class="manifest-fit">{m.manifestTeaser.closing}</p>
-        </div>
-        <button
-          class="btn btn-outline manifest-read-more-btn"
-          data-label-more={lang === "ru" ? "Читать далее" : "Read more"}
-          data-label-less={lang === "ru" ? "Свернуть" : "Collapse"}
-        >
-          {lang === "ru" ? "Читать далее" : "Read more"}
-        </button>
-        <div class="manifest-teaser-actions">
-          <a href={`${base}/manifest`} class="btn btn-outline">
-            {m.manifestTeaser.linkLabel}
-          </a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -423,9 +253,7 @@ const googleFormUrl =
       <div class="footer-links">
         <h4>{m.footer.navCol}</h4>
         <a href="#services">{m.nav.services}</a>
-        <a href={`${base}/cases`}>{m.nav.cases}</a>
-        <a href="#process">{m.nav.process}</a>
-        <a href={`${base}/manifest`}>{manifestLabel}</a>
+        <a href="#why-us">{m.nav.benefits}</a>
         <a href={`${base}/blog`}>{m.nav.blog}</a>
         <a href="#contact">{m.nav.contact}</a>
       </div>
@@ -462,6 +290,7 @@ const googleFormUrl =
       syncNavAria();
     });
   });
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const id = this.getAttribute("href");
@@ -472,9 +301,6 @@ const googleFormUrl =
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
-
-  // --- Mobile accordion/collapse behaviours ---
-  // Only activate on mobile (<=767px). On desktop these elements are hidden/overridden by CSS.
 
   // Why-us: "Show more" button
   const whyMoreBtn = document.querySelector(".why-us-more-btn");
@@ -496,25 +322,6 @@ const googleFormUrl =
       this.setAttribute("aria-expanded", expanded ? "true" : "false");
     });
   });
-
-  // Manifest: "Read more" button
-  const manifestBtn = document.querySelector(".manifest-read-more-btn");
-  if (manifestBtn) {
-    manifestBtn.addEventListener("click", function () {
-      const body = document.querySelector(".manifest-body");
-      const extraPs = document.querySelectorAll(".manifest-extra-p");
-      const isOpen = body?.classList.contains("manifest-body--open");
-      if (isOpen) {
-        body?.classList.remove("manifest-body--open");
-        extraPs.forEach((p) => p.classList.remove("manifest-extra-p--open"));
-        this.textContent = this.dataset.labelMore ?? "Read more";
-      } else {
-        body?.classList.add("manifest-body--open");
-        extraPs.forEach((p) => p.classList.add("manifest-extra-p--open"));
-        this.textContent = this.dataset.labelLess ?? "Collapse";
-      }
-    });
-  }
 
   // Blog: "Show all" button
   const blogShowAllBtn = document.querySelector(".blog-show-all-btn");
