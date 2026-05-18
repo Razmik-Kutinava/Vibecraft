@@ -1843,11 +1843,13 @@ textarea:focus {
 }
 
 .terms-list li::before {
-  content: "—";
+  content: "✓";
   position: absolute;
   left: 0;
   color: var(--neon);
   font-weight: 600;
+  font-size: 0.8em;
+  top: 2px;
 }
 
 .terms-closing {
