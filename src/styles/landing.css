@@ -1377,9 +1377,121 @@ textarea:focus {
 
 .contact-sub {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 14px;
   color: var(--muted-foreground);
   line-height: 1.6;
+}
+
+.contact-scope-trust {
+  max-width: 40rem;
+  margin: 0 auto 14px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: color-mix(in oklch, var(--foreground) 88%, var(--muted-foreground));
+  text-align: center;
+  text-wrap: balance;
+}
+
+.contact-telegram-hint {
+  max-width: 38rem;
+  margin: 0 auto 10px;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.contact-paste {
+  max-width: 40rem;
+  margin: 0 auto 20px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: color-mix(in oklch, var(--background) 75%, var(--surface));
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+.contact-paste code {
+  font: inherit;
+  color: inherit;
+}
+
+.contact-form-hints-title {
+  margin: 0 auto 10px;
+  max-width: 40rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.45;
+  text-align: center;
+}
+
+.contact-micro-list {
+  max-width: 40rem;
+  margin: 0 auto 22px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-micro-list li {
+  position: relative;
+  padding-left: 1.1em;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.contact-micro-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--neon);
+  font-weight: 700;
+}
+
+.contact-not-fit-title {
+  margin: 0 auto 8px;
+  max-width: 40rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted-foreground);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.contact-not-fit-list {
+  max-width: 40rem;
+  margin: 0 auto 20px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-not-fit-list li {
+  position: relative;
+  padding-left: 1em;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: color-mix(in oklch, var(--muted-foreground) 92%, transparent);
+}
+
+.contact-not-fit-list li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: color-mix(in oklch, var(--muted-foreground) 55%, transparent);
 }
 
 .contact-privacy {
@@ -1472,6 +1584,38 @@ textarea:focus {
 }
 
 .hero-bullets li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--neon);
+  font-weight: 700;
+}
+
+.hero-scenarios-label {
+  margin: 18px 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.hero-scenarios {
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-scenarios li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 8px;
+  color: var(--muted-foreground);
+  line-height: 1.55;
+  font-size: 0.9375rem;
+}
+
+.hero-scenarios li::before {
   content: "▸";
   position: absolute;
   left: 0;
@@ -1824,6 +1968,58 @@ textarea:focus {
 
 /* Промежуточный CTA после услуг */
 /* How we work / terms */
+.terms-preamble {
+  max-width: 40rem;
+  margin: 0 auto 20px;
+}
+
+.terms-preamble p {
+  margin: 0 0 12px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.terms-preamble p:last-child {
+  margin-bottom: 0;
+}
+
+.terms-subheading {
+  margin: 24px auto 10px;
+  max-width: 40rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.45;
+}
+
+.terms-micro-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 24px;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.terms-micro-list li {
+  position: relative;
+  padding-left: 1.15em;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.terms-micro-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: color-mix(in oklch, var(--neon) 70%, var(--muted-foreground));
+  font-size: 0.85em;
+  top: 2px;
+}
+
 .terms-list {
   list-style: none;
   padding: 0;

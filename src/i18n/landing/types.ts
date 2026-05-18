@@ -19,6 +19,10 @@ export interface LandingMessages {
   hero: {
     h1: string;
     lead: string;
+    /** Короткий акцент двух типовых сценариев под CTA */
+    scenariosKicker: string;
+    scenarioA: string;
+    scenarioB: string;
     trustLine: string;
     ctaPrimary: string;
     ctaTelegram: string;
@@ -69,12 +73,26 @@ export interface LandingMessages {
   terms: {
     title: string;
     shortNav: string;
+    /** Мягкое введение: сроки, правки, объём — до основного списка */
+    preamble: string[];
+    beforeKickoffTitle: string;
+    beforeKickoffItems: string[];
     items: string[];
     closing: string;
   };
   contact: {
     title: string;
     sub: string;
+    /** Доп. про передачу и границы scope (на EN — сильнее) */
+    scopeTrust: string;
+    telegramHint: string;
+    /** Готовый текст для вставки в Telegram (зеркало полей формы) */
+    telegramPaste: string;
+    /** Подсказка «что вписать в форму» — зеркало полей Google Form */
+    formHintsTitle: string;
+    formHints: string[];
+    notFitTitle: string;
+    notFitItems: string[];
     ctaTelegram: string;
     ctaForm: string;
     privacy: string;

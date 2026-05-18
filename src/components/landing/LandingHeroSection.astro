@@ -17,6 +17,11 @@ const { m, base, telegramDirectUrl } = Astro.props;
       <div class="hero-inner">
         <h1>{m.hero.h1}</h1>
         <p>{m.hero.lead}</p>
+        <p class="hero-scenarios-label">{m.hero.scenariosKicker}</p>
+        <ul class="hero-scenarios" role="list">
+          <li>{m.hero.scenarioA}</li>
+          <li>{m.hero.scenarioB}</li>
+        </ul>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">{m.hero.ctaPrimary}</a>
           <a href={telegramDirectUrl} class="hero-tg-link" target="_blank" rel="noopener noreferrer">{m.hero.ctaTelegram}</a>
