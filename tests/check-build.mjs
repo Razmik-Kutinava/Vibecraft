@@ -14,8 +14,6 @@ const REQUIRED_FILES = [
   "en/index.html",
   "ru/blog/index.html",
   "en/blog/index.html",
-  "ru/manifest/index.html",
-  "en/manifest/index.html",
   "404.html",
   "sitemap-index.xml",
   "robots.txt",
@@ -42,8 +40,10 @@ for (const file of REQUIRED_FILES) {
 const blogSlugs = [
   "ru/blog/coffee-os",
   "en/blog/coffee-os",
-  "ru/blog/hiring-hh-ai",
-  "en/blog/hiring-hh-ai",
+  "ru/blog/why-no-ads",
+  "en/blog/why-no-ads",
+  "ru/blog/slow-site-loses-clients",
+  "en/blog/slow-site-loses-clients",
 ];
 for (const slug of blogSlugs) {
   const full = path.join(dist, slug, "index.html");
