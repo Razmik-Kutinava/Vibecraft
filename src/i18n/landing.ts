@@ -112,7 +112,7 @@ const ru: LandingMessages = {
     title: "Для кого",
     cards: [
       {
-        icon: "→",
+        icon: "💼",
         title: "Бизнес и специалисты",
         subtitle: "",
         body: "Стоматологи, строители, юристы, кафе, фотографы, агентства — всем нужен сайт, который выглядит и работает. Без разработчика в штате, без ожидания и переплат за лишние прослойки.",
@@ -166,7 +166,7 @@ const ru: LandingMessages = {
   },
   services: {
     title: "Услуги",
-    sub: "В каждый вариант входит: передача исходников и всех доступов, деплой на ваш сервер или VPS, базовая SEO-разметка, 14 дней баг-фикса.",
+    sub: "В каждый вариант входит: передача исходников и всех доступов, деплой на ваш сервер или VPS, базовая SEO-разметка, 14 дней баг-фикса. Внешний вид — спокойный и аккуратный, без отдельного UI/UX в Figma; если есть цвета или ссылка «как нравится» — напишите, подстроюсь в рамках задачи и срока.",
     items: [
       {
         icon: "🌐",
@@ -282,7 +282,7 @@ const en: LandingMessages = {
     title: "Who it's for",
     cards: [
       {
-        icon: "→",
+        icon: "💼",
         title: "Businesses and specialists",
         subtitle: "",
         body: "Dentists, builders, lawyers, cafes, photographers, agencies — everyone needs a site that looks good and works. No in-house developer, no long waits, no agency markups.",
@@ -336,7 +336,7 @@ const en: LandingMessages = {
   },
   services: {
     title: "Services",
-    sub: "Every option includes: source handover and access, deploy to your server or VPS, baseline SEO, 14 days of bugfix.",
+    sub: "Every option includes: source handover and access, deploy to your server or VPS, baseline SEO, 14 days of bugfix. Look and feel is clean and straightforward — no separate Figma UI/UX phase. Share colors or a couple of reference sites and I'll align within scope and timeline.",
     items: [
       {
         icon: "🌐",
