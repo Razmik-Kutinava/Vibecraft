@@ -30,6 +30,21 @@ function check(label, condition) {
   }
 }
 
+/** Только `<head>...</head>` — тело страницы (статьи) не должно ломать проверку robots/noindex */
+function extractHead(html) {
+  const m = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i);
+  return m ? m[1] : "";
+}
+
+function headHasRobotsNoindex(headHtml) {
+  const metaTags = headHtml.match(/<meta\b[^>]*>/gi) || [];
+  for (const tag of metaTags) {
+    if (!/\bname\s*=\s*["']robots["']/i.test(tag)) continue;
+    if (/\bcontent\s*=\s*["'][^"']*noindex/i.test(tag)) return true;
+  }
+  return false;
+}
+
 console.log("=== SEO META TAGS TEST ===\n");
 
 for (const page of PAGES) {
@@ -40,6 +55,7 @@ for (const page of PAGES) {
   }
 
   const html = fs.readFileSync(full, "utf-8");
+  const headHtml = extractHead(html);
   console.log(`\n  [${page.file}]`);
 
   check("<title> не пустой", /<title>[^<]{5,}<\/title>/.test(html));
@@ -61,9 +77,12 @@ for (const page of PAGES) {
   check("@type в JSON-LD есть", /"@type"/.test(html));
 
   if (page.file === "404.html") {
-    check("robots noindex на 404", /noindex/.test(html));
+    check("robots noindex на 404", headHasRobotsNoindex(headHtml));
   } else {
-    check("нет noindex на обычной странице", !/noindex/.test(html));
+    check(
+      "нет robots noindex в <head>",
+      !headHasRobotsNoindex(headHtml),
+    );
   }
 
   if (page.lang) {

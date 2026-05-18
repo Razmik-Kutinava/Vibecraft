@@ -1,21 +1,13 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 
-/** Локализация по префиксу пути: /en/* → EN, иначе RU */
-const pathname = Astro.url.pathname;
-const isEn = pathname.startsWith("/en");
-const title = isEn
-  ? "404 — Page not found | Vibecraft"
-  : "404 — страница не найдена | Vibecraft";
-const description = isEn
-  ? "The requested page does not exist."
-  : "Запрашиваемая страница не существует.";
-const homeHref = isEn ? "/en/" : "/ru/";
-const homeLabel = isEn ? "Home" : "На главную";
-const h1 = isEn ? "Page not found" : "Страница не найдена";
-const lead = isEn
-  ? "Check the URL or return to the homepage."
-  : "Проверьте адрес или вернитесь на главную.";
+/** Базово RU: для статики `404.html` `Astro.url.pathname` часто `/404`, а не запрос пользователя — язык уточняет инлайн-скрипт **после** `<main>`, когда `#error-*` уже в DOM (в `<head>` `getElementById` давал бы `null`). */
+const title = "404 — страница не найдена | Vibecraft";
+const description = "Запрашиваемая страница не существует.";
+const homeHref = "/ru/";
+const homeLabel = "На главную";
+const h1 = "Страница не найдена";
+const lead = "Проверьте адрес или вернитесь на главную.";
 ---
 
 <Layout
@@ -23,18 +15,46 @@ const lead = isEn
   description={description}
   canonicalPath="/404"
   robots="noindex, nofollow"
-  htmlLang={isEn ? "en" : "ru"}
+  htmlLang="ru"
   bodyClass="min-h-screen bg-background text-foreground font-sans antialiased"
 >
   <main class="mx-auto flex max-w-lg flex-col items-center justify-center px-4 py-24 text-center">
     <p class="font-mono text-sm uppercase tracking-widest text-neon">404</p>
-    <h1 class="mt-4 text-3xl font-bold text-foreground">{h1}</h1>
-    <p class="mt-3 text-muted-foreground">{lead}</p>
+    <h1 id="error-title" class="mt-4 text-3xl font-bold text-foreground">{h1}</h1>
+    <p id="error-lead" class="mt-3 text-muted-foreground">{lead}</p>
     <a
+      id="error-home"
       href={homeHref}
       class="mt-8 inline-flex rounded-[var(--radius)] bg-neon px-8 py-3 font-mono text-sm font-bold tracking-wide text-primary-foreground no-underline transition hover:bg-neon-dim"
     >
       {homeLabel}
     </a>
   </main>
+
+  <script is:inline>
+    (function () {
+      try {
+        var p = typeof location !== "undefined" ? location.pathname || "" : "";
+        var en = /^\/en(?:\/|$)/.test(p);
+        if (!en) return;
+
+        document.documentElement.lang = "en";
+        document.title = "404 — Page not found | Vibecraft";
+        var meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute("content", "The requested page does not exist.");
+
+        var h = document.getElementById("error-title");
+        if (h) h.textContent = "Page not found";
+        var ld = document.getElementById("error-lead");
+        if (ld) ld.textContent = "Check the URL or return to the homepage.";
+        var a = document.getElementById("error-home");
+        if (a) {
+          a.setAttribute("href", "/en/");
+          a.textContent = "Home";
+        }
+      } catch (_) {
+        /* no-op */
+      }
+    })();
+  </script>
 </Layout>

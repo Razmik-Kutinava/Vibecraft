@@ -1,6 +1,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, type ReactNode } from "react";
-import * as THREE from "three";
+import type { Group, Mesh, Points } from "three";
+import { BufferGeometry, BufferAttribute } from "three";
 
 const NEON = "#a3f559";
 const NEON_DIM = "#1aff6e";
@@ -23,7 +24,7 @@ function NeonRing({
   rotationY: number;
   speed: number;
 }) {
-  const ref = useRef<THREE.Mesh>(null);
+  const ref = useRef<Mesh>(null);
   const motion = getMotionFactor();
   useFrame((_, delta) => {
     if (!ref.current) return;
@@ -33,14 +34,14 @@ function NeonRing({
   });
   return (
     <mesh ref={ref} rotation={[rotationX, rotationY, 0]}>
-      <torusGeometry args={[radius, tube, 2, 64]} />
+      <torusGeometry args={[radius, tube, 2, 40]} />
       <meshBasicMaterial color={NEON} wireframe />
     </mesh>
   );
 }
 
 function CoreCrystal() {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const meshRef = useRef<Mesh>(null);
   const motion = getMotionFactor();
 
   useFrame((_, delta) => {
@@ -65,7 +66,7 @@ function CoreCrystal() {
 }
 
 function WireOctahedron() {
-  const ref = useRef<THREE.Mesh>(null);
+  const ref = useRef<Mesh>(null);
   const motion = getMotionFactor();
   useFrame((_, delta) => {
     if (!ref.current) return;
@@ -82,11 +83,11 @@ function WireOctahedron() {
 }
 
 function FloatingDots() {
-  const ref = useRef<THREE.Points>(null);
+  const ref = useRef<Points>(null);
   const motion = getMotionFactor();
 
   const dotGeometry = useMemo(() => {
-    const count = 48;
+    const count = 40;
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * Math.PI * 2;
@@ -96,8 +97,8 @@ function FloatingDots() {
       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       pos[i * 3 + 2] = r * Math.cos(phi);
     }
-    const g = new THREE.BufferGeometry();
-    g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    const g = new BufferGeometry();
+    g.setAttribute("position", new BufferAttribute(pos, 3));
     return g;
   }, []);
 
@@ -114,7 +115,7 @@ function FloatingDots() {
 }
 
 function ScrollTilt({ children }: { children: ReactNode }) {
-  const group = useRef<THREE.Group>(null);
+  const group = useRef<Group>(null);
   const motion = getMotionFactor();
   useFrame(() => {
     if (!group.current) return;
@@ -128,7 +129,7 @@ const DRAG_SENS = 0.0055;
 const AUTO_SPEED = 0.22;
 
 function DragRotation({ children }: { children: ReactNode }) {
-  const groupRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<Group>(null);
   const { gl } = useThree();
   const motion = getMotionFactor();
   const dragging = useRef(false);
@@ -246,7 +247,7 @@ export default function HeroScene() {
           powerPreference: "default",
         }}
         style={{ width: "100%", height: "100%", display: "block" }}
-        dpr={[1, 1.75]}
+        dpr={[1, 1.35]}
         onCreated={({ gl }) => {
           const el = gl.domElement;
           el.addEventListener("webglcontextlost", (e) => {

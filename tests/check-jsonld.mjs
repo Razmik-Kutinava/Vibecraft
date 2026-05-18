@@ -56,12 +56,46 @@ console.log("=== JSON-LD SCHEMA TEST ===\n");
     check("ProfessionalService в @graph", types.includes("ProfessionalService"));
     check("WebSite в @graph", types.includes("WebSite"));
 
+    const prof = nodes.find((n) => n["@type"] === "ProfessionalService");
+    if (prof) {
+      check("ProfessionalService описание по-русски", /[\u0400-\u04FF]/.test(String(prof.description || "")));
+    }
+
     const org = nodes.find((n) => n["@type"] === "Organization");
     if (org) {
       check("Organization.name задан", !!org.name);
       check("Organization.url задан", !!org.url);
       check("Organization.sameAs — массив", Array.isArray(org.sameAs));
       check("Telegram в sameAs", (org.sameAs || []).some((u) => u.includes("t.me")));
+    }
+  }
+}
+
+// Лендинг EN — ProfessionalService и sameAs должны быть согласованы с локалью
+{
+  const html = fs.readFileSync(path.join(dist, "en/index.html"), "utf-8");
+  const schemas = extractJsonLd(html);
+  console.log(`\n  [en/index.html] — найдено JSON-LD блоков: ${schemas.length}`);
+
+  const valid = schemas.filter(Boolean);
+  check("JSON-LD парсится без ошибок (EN)", valid.length === schemas.length);
+
+  const graphs = valid.filter((s) => s["@graph"]);
+  check("есть @graph (EN)", graphs.length > 0);
+
+  if (graphs.length > 0) {
+    const nodes = graphs[0]["@graph"];
+    const prof = nodes.find((n) => n["@type"] === "ProfessionalService");
+    if (prof) {
+      check("EN: ProfessionalService без кириллицы в описании", !/[\u0400-\u04FF]/.test(String(prof.description || "")));
+      const rawOffers = prof.serviceOffer?.offers;
+      const offerList = Array.isArray(rawOffers) ? rawOffers : [];
+      const names = offerList.map((o) => String(o?.name ?? "")).join(" ");
+      check("EN: офферы без кириллицы в названиях", !/[\u0400-\u04FF]/.test(names));
+    }
+    const org = nodes.find((n) => n["@type"] === "Organization");
+    if (org && Array.isArray(org.sameAs)) {
+      check("Organization.sameAs — только абсолютные https URL", org.sameAs.every((u) => /^https:\/\//i.test(String(u))));
     }
   }
 }
