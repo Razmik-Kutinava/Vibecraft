@@ -159,60 +159,23 @@ export const landingMessagesEn: LandingMessages = {
   },
   contact: {
     title: "Tell me about the task",
-    sub: "The form matches the fields we actually need — best for longer briefs. Telegram is fine for a short hello; the template below keeps first messages efficient.",
-    scopeTrust:
-      "Handover includes source access (repo or archive) and documented deploy credentials. We write down what's in the fixed scope vs. out-of-scope or billable before any deposit, so material delivery and boundaries stay explicit. Changes after sign-off go through a short written add-on — no silent scope creep.",
-    telegramHint: "Plain bullet lists are perfect — no polished marketing copy required.",
-    telegramPaste: `Paste template for Telegram:
-
-Name:
-What you need: (Leads + DB OR landing without DB — plus one short paragraph of context)
-Timeline / deadline:
-Preferred contact besides this chat / email for copies:
-Copy & media status: ready / partial / to be produced later
-Reference site or visual direction:
-Budget or engagement type (optional):
-How you found us (optional):`,
-    formHintsTitle: "In the form, the “What do you need?” field is the main qualifier. It helps if you add:",
-    formHints: [
-      "What you want delivered: landing with database + lead flow vs. a single-page landing without a database (or your closest wording).",
-      "One-line offer and the post-click action you care about — form submit, call, jump to Messenger, etc.",
-      "Domain/hosting status and page languages; if integrations matter (CRM, payments), mention them in one line.",
-    ],
-    notFitTitle: "To save your time — we're usually not the right fit for:",
-    notFitItems: [
-      "Always-on paid media management or full social media retainers without a development component.",
-      "Large brand or research-led UI programs before a first shippable page exists.",
-      "Native mobile apps or heavy platforms when that's the core ask — say so early; we'll decline honestly or point you to a better match.",
-    ],
+    sub: "Message on Telegram or submit the form — your choice. I'll reply with a timeline and budget range during working hours. No obligation.",
     ctaTelegram: "Message on Telegram",
-    ctaForm: "Open the request form",
+    ctaForm: "Submit a request",
     privacy: "Your contact is only used to follow up on your request.",
   },
   terms: {
     title: "How we work",
     shortNav: "Terms",
-    preamble: [
-      "Typical pace once assets are available: simple landing without a database often lands around 3–7 calendar days; landing + form + database commonly around 1–2 weeks if copy and product decisions don't stall.",
-      "After scope is agreed, we run a few clear revision cycles on copy and layout (usually on the order of two to three) so we converge without endless micro-billing.",
-      "If the work grows beyond the agreed package, we say so before or right after discovery: expand the package or add a written change order — no surprise scope after the deposit.",
-    ],
-    beforeKickoffTitle: "Nice to have before kickoff (lightweight, not bureaucracy):",
-    beforeKickoffItems: [
-      "Who the audience is, the main offer, and what “success” means right after launch.",
-      "Whether copy and imagery are ready (yes / partial / later — latter may shift dates).",
-      "Domain and hosting: already set or you want a quick recommendation.",
-    ],
     items: [
-      "Price and scope are fixed before the deposit. Revisions stay inside the agreed cycles and signed scope; net-new asks use a short change order or a separate phase.",
-      "Source handover: repository access or an export before the final balance; deploy steps and key credentials are written down at handover.",
-      "Copy, photos, and logo default to client-supplied; missing assets move the start and delivery dates.",
-      "Visuals follow the package: clean and practical — not a standalone Figma product-design engagement.",
-      "CRM, payments, heavy calculators, and bespoke integrations are scoped separately — not “just a few form fields” by default.",
-      "14 days after launch: bugfixes. Content edits and new work after handover: separate agreement.",
-      "Domain and hosting stay on your accounts; I'll help with deploy, renewals and invoices are yours.",
+      "Fixed before kickoff: price, scope and timeline in writing before the deposit. 2–3 revision rounds on copy and layout; anything beyond uses a short change order.",
+      "Sources and access are yours: code, repository and all credentials handed over before the final payment.",
+      "Content is your side: copy, photos and logo default to client-supplied. Missing assets move the start and delivery dates.",
+      "Design — clean and practical: we'll match your colours and references; a standalone Figma UI/UX engagement is a separate service.",
+      "Integrations on request: CRM, payments, calculators are scoped separately — not included in base packages.",
+      "14-day support: bugfixes after launch are included. Content edits and new tasks go by separate agreement. Domain and hosting stay on your accounts.",
     ],
-    closing: "Unsure what fits the package — ask before the first payment; we'll align in writing, no strings attached.",
+    closing: "Question about scope? We'll align in writing before the first payment — no strings attached.",
   },
   footer: {
     tagline: "VIBECRAFT",

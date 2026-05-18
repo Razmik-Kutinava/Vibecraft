@@ -11,17 +11,6 @@ const { m } = Astro.props;
 <section id="terms" class="section section--surface">
   <div class="container">
     <h2 class="section-title">{m.terms.title}</h2>
-    <div class="terms-preamble">
-      {m.terms.preamble.map((p) => (
-        <p>{p}</p>
-      ))}
-    </div>
-    <p class="terms-subheading">{m.terms.beforeKickoffTitle}</p>
-    <ul class="terms-micro-list" role="list">
-      {m.terms.beforeKickoffItems.map((line) => (
-        <li>{line}</li>
-      ))}
-    </ul>
     <ul class="terms-list">
       {m.terms.items.map((line) => <li>{line}</li>)}
     </ul>

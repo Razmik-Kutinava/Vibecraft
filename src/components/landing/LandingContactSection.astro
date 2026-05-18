@@ -15,21 +15,6 @@ const { m, telegramDirectUrl, googleFormUrl } = Astro.props;
     <div class="form-card form-card--contact">
       <h2 class="section-title">{m.contact.title}</h2>
       <p class="contact-sub">{m.contact.sub}</p>
-      <p class="contact-scope-trust">{m.contact.scopeTrust}</p>
-      <p class="contact-telegram-hint">{m.contact.telegramHint}</p>
-      <pre class="contact-paste" tabindex="0"><code>{m.contact.telegramPaste}</code></pre>
-      <p class="contact-form-hints-title">{m.contact.formHintsTitle}</p>
-      <ul class="contact-micro-list" role="list">
-        {m.contact.formHints.map((line) => (
-          <li>{line}</li>
-        ))}
-      </ul>
-      <p class="contact-not-fit-title">{m.contact.notFitTitle}</p>
-      <ul class="contact-not-fit-list" role="list">
-        {m.contact.notFitItems.map((line) => (
-          <li>{line}</li>
-        ))}
-      </ul>
       <div class="contact-cta-row">
         <a href={telegramDirectUrl} class="btn btn-primary contact-cta" target="_blank" rel="noopener noreferrer">
           {m.contact.ctaTelegram}
