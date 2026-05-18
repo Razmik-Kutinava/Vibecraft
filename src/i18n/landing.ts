@@ -155,8 +155,8 @@ const ru: LandingMessages = {
         text: "Деплой, SEO-разметка, адаптив под мобилку. Готово к реальным пользователям — не заготовка под доработку.",
       },
       {
-        title: "Видите результат в процессе",
-        text: "Показываем работающий лендинг до финала — не ждёте вслепую.",
+        title: "Делаем сайт — не рекламу",
+        text: "Техническое SEO, скорость, разметка — внутри каждого проекта. Настройка рекламы и продвижение — не наш профиль. Честно о фокусе.",
       },
       {
         title: "Передача без головняка",
@@ -325,8 +325,8 @@ const en: LandingMessages = {
         text: "Deploy, baseline SEO, mobile-ready. Ready for real users — not a draft for future revision.",
       },
       {
-        title: "You see progress along the way",
-        text: "We show working results before the finish — no blind waiting until the end.",
+        title: "We build sites — not ads",
+        text: "Technical SEO, speed, markup — inside every project. Ad campaigns and promotion aren't our lane. Honest about the focus.",
       },
       {
         title: "Clean handover",
