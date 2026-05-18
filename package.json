@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:all": "npm run build && node tests/check-build.mjs && node tests/check-links.mjs && node tests/check-seo.mjs && node tests/check-html.mjs && node tests/check-jsonld.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
