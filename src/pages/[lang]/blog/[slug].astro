@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import { getLandingMessages, type Lang } from "@/i18n/landing";
 import { defaultOgImage, getSiteUrl } from "@/lib/site";
+import { jsonLdBlogBreadcrumbTrail } from "@/lib/blogBreadcrumbs";
 import { articleJsonLd, breadcrumbList, organizationNode } from "@/lib/schema";
 import { formatPostDate, readTimeLabel } from "@/lib/formatDate";
 
@@ -33,11 +34,10 @@ const ogImage = post.data.ogImage ?? defaultOgImage;
 
 const graph = [
   organizationNode(site),
-  breadcrumbList(site, [
-    { name: lang === "ru" ? "Главная" : "Home", path: `/${lang}/` },
-    { name: lang === "ru" ? "Блог" : "Blog", path: `/${lang}/blog` },
-    { name: post.data.title, path: canonicalPath },
-  ]),
+  breadcrumbList(
+    site,
+    jsonLdBlogBreadcrumbTrail(lang, m, { slug, title: post.data.title }),
+  ),
   articleJsonLd({
     site,
     url: pageUrl,

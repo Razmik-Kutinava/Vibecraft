@@ -1,6 +1,10 @@
 export type Lang = "ru" | "en";
 
 export interface LandingMessages {
+  crumbs: {
+    /** Подпись первого пункта BreadcrumbList (JSON-LD) — не путать с «← На главную» и т.п. */
+    home: string;
+  };
   seo: { title: string; description: string; keywords: string };
   nav: {
     tagline: string;

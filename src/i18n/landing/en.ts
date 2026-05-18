@@ -1,6 +1,9 @@
 import type { LandingMessages } from "./types";
 
 export const landingMessagesEn: LandingMessages = {
+  crumbs: {
+    home: "Home",
+  },
   seo: {
     title: "Vibecraft — landing pages on Astro | With or without a database",
     description:
