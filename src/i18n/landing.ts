@@ -85,14 +85,14 @@ export interface LandingMessages {
 
 const ru: LandingMessages = {
   seo: {
-    title: "Vibecraft — лендинги на Astro + Svelte | С базой и без",
+    title: "Vibecraft — лендинги на Astro | С базой и без",
     description:
-      "Делаем лендинги на Astro и Svelte — быстро, качественно, с SEO из коробки. Простой лендинг от $500, с базой данных и формой сбора заявок от $800. Исходники и доступы — ваши.",
+      "Делаем лендинги на Astro — быстро, качественно, с SEO из коробки. Простой лендинг от $500, с базой данных и формой сбора заявок от $800. Исходники и доступы — ваши.",
     keywords:
-      "лендинг на заказ, лендинг Astro, лендинг Svelte, сайт под ключ, лендинг с базой данных, форма заявок, сайт для бизнеса, быстрый лендинг",
+      "лендинг на заказ, лендинг Astro, сайт под ключ, лендинг с базой данных, форма заявок, сайт для бизнеса, быстрый лендинг",
   },
   nav: {
-    tagline: "лендинги на Astro + Svelte",
+    tagline: "лендинги на Astro",
     benefits: "Преимущества",
     services: "Услуги",
     blog: "Блог",
@@ -102,7 +102,7 @@ const ru: LandingMessages = {
     langEn: "EN",
   },
   hero: {
-    h1: "Лендинг под ключ. Astro + Svelte. С формой заявок и базой — или без, под вашу задачу.",
+    h1: "Лендинг под ключ. На Astro. С формой заявок и базой — или без, под вашу задачу.",
     lead: "Делаем быстрые, качественные лендинги для бизнеса. Прямой контакт с разработчиком — без менеджеров и переплат за структуру студии.",
     trustLine: "Реализованные проекты — в HoReCa, логистике и сфере услуг. Разборы в блоге →",
     ctaPrimary: "Обсудить проект",
@@ -173,7 +173,7 @@ const ru: LandingMessages = {
         title: "Лендинг",
         price: "от $500",
         timeline: "3–7 дней",
-        desc: "Чистый лендинг без базы данных. Astro + Svelte, быстро и по делу.",
+        desc: "Чистый лендинг без базы данных. На Astro, быстро и по делу.",
         features: [
           "Адаптив под мобилку и десктоп",
           "SEO-разметка из коробки",
@@ -210,7 +210,7 @@ const ru: LandingMessages = {
         url: "https://haypsy.am",
         description:
           "Лендинг для первой армянской платформы психологической помощи. Сбор листа ожидания с конверсионной формой и скидкой 30% на первую сессию. Запуск приложения — осень 2026.",
-        tags: ["Astro", "Svelte", "Лендинг", "Форма заявок", "EN / RU / HY"],
+        tags: ["Astro", "Лендинг", "Форма заявок", "EN / RU / HY"],
         cta: "Открыть сайт →",
       },
     ],
@@ -227,8 +227,8 @@ const ru: LandingMessages = {
   },
   blogList: {
     title: "Блог Vibecraft",
-    description: "Разборы проектов, стек, заметки про разработку на Astro и Svelte.",
-    keywords: "лендинг Astro, Svelte, разработка сайтов, заметки разработчика",
+    description: "Разборы проектов, стек, заметки про разработку на Astro.",
+    keywords: "лендинг Astro, разработка сайтов, заметки разработчика",
     h1: "Последние материалы",
     sub: "Разборы и заметки про разработку.",
     back: "← На главную",
@@ -243,7 +243,7 @@ const ru: LandingMessages = {
   },
   footer: {
     tagline: "VIBECRAFT",
-    taglineSub: "лендинги на Astro + Svelte",
+    taglineSub: "лендинги на Astro",
     motto: "Ваш продукт — ваш актив. Result > poetry.",
     navCol: "Навигация",
     contactsCol: "Связь",
@@ -255,14 +255,14 @@ const ru: LandingMessages = {
 
 const en: LandingMessages = {
   seo: {
-    title: "Vibecraft — landing pages on Astro + Svelte | With or without a database",
+    title: "Vibecraft — landing pages on Astro | With or without a database",
     description:
-      "We build fast, quality landing pages on Astro and Svelte — with SEO out of the box. Simple landing from $500, with database and lead form from $800. Source code and access are yours.",
+      "We build fast, quality landing pages on Astro — with SEO out of the box. Simple landing from $500, with database and lead form from $800. Source code and access are yours.",
     keywords:
-      "landing page development, Astro landing, Svelte landing, custom site, landing with database, lead form, business website, fast landing",
+      "landing page development, Astro landing, custom site, landing with database, lead form, business website, fast landing",
   },
   nav: {
-    tagline: "landing pages on Astro + Svelte",
+    tagline: "landing pages on Astro",
     benefits: "Benefits",
     services: "Services",
     blog: "Blog",
@@ -272,7 +272,7 @@ const en: LandingMessages = {
     langEn: "EN",
   },
   hero: {
-    h1: "Landing page, done right. Astro + Svelte. With a lead form and database — or without, your call.",
+    h1: "Landing page, done right. Built on Astro. With a lead form and database — or without, your call.",
     lead: "Fast, quality landing pages for businesses. Direct contact with the engineer — no account managers, no agency overhead.",
     trustLine: "Delivered projects in HoReCa, logistics and services — breakdowns in the blog →",
     ctaPrimary: "Discuss project",
@@ -343,7 +343,7 @@ const en: LandingMessages = {
         title: "Landing page",
         price: "from $500",
         timeline: "3–7 days",
-        desc: "Clean landing without a database. Astro + Svelte, fast and to the point.",
+        desc: "Clean landing without a database. Built on Astro, fast and to the point.",
         features: [
           "Responsive — mobile and desktop",
           "SEO markup out of the box",
@@ -380,7 +380,7 @@ const en: LandingMessages = {
         url: "https://haypsy.am",
         description:
           "Landing page for the first pan-Armenian psychology platform. Waitlist collection with a lead form and 30% off for early signups. App launch target: autumn 2026.",
-        tags: ["Astro", "Svelte", "Landing", "Lead form", "EN / RU / HY"],
+        tags: ["Astro", "Landing", "Lead form", "EN / RU / HY"],
         cta: "Visit site →",
       },
     ],
@@ -397,8 +397,8 @@ const en: LandingMessages = {
   },
   blogList: {
     title: "Vibecraft blog",
-    description: "Project breakdowns, stack, dev notes on Astro and Svelte.",
-    keywords: "Astro landing, Svelte, web development, developer notes",
+    description: "Project breakdowns, stack, dev notes on Astro.",
+    keywords: "Astro landing, web development, developer notes",
     h1: "Latest posts",
     sub: "Breakdowns and dev notes.",
     back: "← Home",
@@ -413,7 +413,7 @@ const en: LandingMessages = {
   },
   footer: {
     tagline: "VIBECRAFT",
-    taglineSub: "landing pages on Astro + Svelte",
+    taglineSub: "landing pages on Astro",
     motto: "Your product — your asset. Result > poetry.",
     navCol: "Navigate",
     contactsCol: "Contact",

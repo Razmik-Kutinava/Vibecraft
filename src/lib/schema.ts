@@ -28,7 +28,7 @@ export function professionalServiceNode(site: string) {
     url: site,
     logo: `${site}/favicon.png`,
     description:
-      "Лендинги на Astro и Svelte под ключ — с базой данных и без. Передача исходников, деплой на сервер клиента, SEO из коробки. От $500.",
+      "Лендинги на Astro под ключ — с базой данных и без. Передача исходников, деплой на сервер клиента, SEO из коробки. От $500.",
     priceRange: "$500-$800",
     address: { "@type": "PostalAddress", addressCountry: "AM" },
     contactPoint: {
