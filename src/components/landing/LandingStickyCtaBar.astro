@@ -1,0 +1,13 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  m: LandingMessages;
+}
+
+const { m } = Astro.props;
+---
+
+<div class="sticky-cta-bar">
+  <a href="#contact" class="btn btn-primary sticky-cta-btn">{m.midCta.btn}</a>
+</div>

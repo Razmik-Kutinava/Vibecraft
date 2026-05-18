@@ -1,0 +1,43 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  m: LandingMessages;
+}
+
+const { m } = Astro.props;
+---
+
+<section id="services" class="section section--surface section--ambient-drift">
+  <div class="container">
+    <h2 class="section-title">{m.services.title}</h2>
+    <div class="section-sub max-w-[52rem] mx-auto">{m.services.sub}</div>
+    <div class="cards-grid cards-grid--services">
+      {
+        m.services.items.map((s) => (
+          <div class="card card--service">
+            <button class="card--service-header" aria-expanded="false">
+              <div class="card-icon">{s.icon}</div>
+              <h3 class="card--service-title">{s.title}</h3>
+              <div class="service-meta">
+                {s.price}
+                <span class="sep">·</span>
+                {s.timeline}
+              </div>
+              <span class="card--service-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="card--service-collapse">
+              <p class="card--service-desc">{s.desc}</p>
+              <ul class="card--service-features">
+                {s.features.map((f) => <li>{f}</li>)}
+              </ul>
+              <a href="#contact" class="btn btn-primary card--service-cta">
+                {s.cta}
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

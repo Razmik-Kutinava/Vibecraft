@@ -1,0 +1,32 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  m: LandingMessages;
+}
+
+const { m } = Astro.props;
+---
+
+<section id="audience" class="section section--surface">
+  <div class="container">
+    <h2 class="section-title">{m.audience.title}</h2>
+    <div class="audience-grid">
+      {
+        m.audience.cards.map((c) => (
+          <div class:list={["card", "card--audience", c.featured ? "card--audience-featured" : null]}>
+            <div class="card-audience-icon">{c.icon}</div>
+            {c.subtitle ? <p class="card-audience-sub">{c.subtitle}</p> : null}
+            <h3 class="card-audience-title">{c.title}</h3>
+            <p>{c.body}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="audience-cta">
+      <a href="#contact" class="btn btn-primary">
+        {m.audience.cta}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  m: LandingMessages;
+}
+
+const { m } = Astro.props;
+---
+
+<section class="section mid-cta-band section--surface" aria-label={m.midCta.title}>
+  <div class="container mid-cta-inner">
+    <p class="mid-cta-title">{m.midCta.title}</p>
+    <p class="mid-cta-sub">{m.midCta.sub}</p>
+    <a href="#contact" class="btn btn-primary">{m.midCta.btn}</a>
+  </div>
+</section>

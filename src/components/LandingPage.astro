@@ -1,22 +1,29 @@
 ---
 import type { Lang } from "@/i18n/landing";
 import { getLandingMessages, telegramDirectUrl } from "@/i18n/landing";
-import HeroIsland from "@/components/hero/HeroIsland.tsx";
 import "@/styles/landing.css";
 
-export interface BlogPreview {
-  slug: string;
-  emoji: string;
-  title: string;
-  description: string;
-  tag: string;
-  dateLabel: string;
-  readLabel: string;
-}
+import LandingHeader from "@/components/landing/LandingHeader.astro";
+import LandingHeroSection from "@/components/landing/LandingHeroSection.astro";
+import LandingAudienceSection from "@/components/landing/LandingAudienceSection.astro";
+import LandingWhyUsSection from "@/components/landing/LandingWhyUsSection.astro";
+import LandingServicesSection from "@/components/landing/LandingServicesSection.astro";
+import LandingPortfolioSection from "@/components/landing/LandingPortfolioSection.astro";
+import LandingMidCtaSection from "@/components/landing/LandingMidCtaSection.astro";
+import LandingBlogPreviewSection from "@/components/landing/LandingBlogPreviewSection.astro";
+import LandingTermsSection from "@/components/landing/LandingTermsSection.astro";
+import LandingContactSection from "@/components/landing/LandingContactSection.astro";
+import LandingStickyCtaBar from "@/components/landing/LandingStickyCtaBar.astro";
+import LandingFooterSection from "@/components/landing/LandingFooterSection.astro";
+import LandingPageInteractions from "@/components/landing/LandingPageInteractions.astro";
+
+import type { LandingBlogPreview } from "@/components/landing/types";
+
+export type { LandingBlogPreview };
 
 interface Props {
   lang: Lang;
-  recentPosts: BlogPreview[];
+  recentPosts: LandingBlogPreview[];
 }
 
 const { lang, recentPosts } = Astro.props;
@@ -30,343 +37,29 @@ const googleFormUrl =
   import.meta.env.PUBLIC_GOOGLE_FORM_URL ?? "https://forms.gle/ydLZdiZhDUurb7hV8";
 ---
 
-<header class="header" data-menu-open-label={menuOpenLabel} data-menu-close-label={menuCloseLabel}>
-  <div class="container nav-container">
-    <input type="checkbox" id="nav-open" class="nav-toggle-input" tabindex="-1" />
-    <div class="nav-bar">
-      <div class="logo-brand">
-        <a class="logo-link" href={base}>
-          <span class="logo-wordmark" aria-label="Vibecraft">
-            <span class="logo-vibe">VIBE</span><span class="logo-craft">CRAFT</span>
-          </span>
-          <span class="logo-tagline">{m.nav.tagline}</span>
-        </a>
-      </div>
-      <label
-        for="nav-open"
-        class="nav-burger"
-        id="nav-burger"
-        tabindex="0"
-        aria-controls="nav-panel"
-        aria-expanded="false"
-        aria-label={menuOpenLabel}
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </label>
-    </div>
-    <nav id="nav-panel" class="nav-panel" aria-label={menuNavLabel}>
-      <label for="nav-open" class="nav-scrim"></label>
-      <div class="nav-panel-inner">
-        <a href="#why-us">{m.nav.benefits}</a>
-        <a href="#services">{m.nav.services}</a>
-        <a href={`${base}/blog`}>{m.nav.blog}</a>
-        <a href="#terms">{m.terms.shortNav}</a>
-        <a href="#contact">{m.nav.contact}</a>
-        <div class="lang-switch">
-          <a href="/ru/" class:list={[{ "is-active": lang === "ru" }]}>{m.nav.langRu}</a>
-          <a href="/en/" class:list={[{ "is-active": lang === "en" }]}>{m.nav.langEn}</a>
-        </div>
-        <a href="#contact" class="btn btn-primary nav-cta">{m.nav.order}</a>
-      </div>
-    </nav>
-  </div>
-</header>
+<LandingHeader
+  lang={lang}
+  m={m}
+  base={base}
+  menuOpenLabel={menuOpenLabel}
+  menuCloseLabel={menuCloseLabel}
+  menuNavLabel={menuNavLabel}
+/>
 
 <main>
-  <section class="hero">
-    <div class="container">
-      <div class="hero-layout">
-        <div class="hero-inner">
-          <h1>{m.hero.h1}</h1>
-          <p>{m.hero.lead}</p>
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">{m.hero.ctaPrimary}</a>
-            <a href={telegramDirectUrl} class="hero-tg-link" target="_blank" rel="noopener noreferrer">{m.hero.ctaTelegram}</a>
-          </div>
-          <a href={`${base}/blog`} class="hero-trust-line">{m.hero.trustLine}</a>
-        </div>
-        <div class="hero-visual hidden lg:block" aria-hidden="true">
-          <HeroIsland client:visible />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="audience" class="section section--surface">
-    <div class="container">
-      <h2 class="section-title">{m.audience.title}</h2>
-      <div class="audience-grid">
-        {
-          m.audience.cards.map((c) => (
-            <div class:list={["card", "card--audience", c.featured ? "card--audience-featured" : null]}>
-              <div class="card-audience-icon">{c.icon}</div>
-              {c.subtitle ? <p class="card-audience-sub">{c.subtitle}</p> : null}
-              <h3 class="card-audience-title">{c.title}</h3>
-              <p>{c.body}</p>
-            </div>
-          ))
-        }
-      </div>
-      <div class="audience-cta">
-        <a href="#contact" class="btn btn-primary">
-          {m.audience.cta}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="why-us" class="section section--surface section--ambient-orb">
-    <div class="container">
-      <h2 class="section-title">{m.whyUs.title}</h2>
-      <div class="why-grid">
-        {
-          m.whyUs.items.map((item, idx) => (
-            <div class:list={["why-card", idx >= 3 ? "why-card--hidden-mob" : null]}>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))
-        }
-      </div>
-      <div class="why-us-more-wrap">
-        <button
-          class="btn btn-outline why-us-more-btn"
-          data-label-show={lang === "ru" ? "Показать ещё" : "Show more"}
-        >
-          {lang === "ru" ? "Показать ещё" : "Show more"}
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="section section--surface section--ambient-drift">
-    <div class="container">
-      <h2 class="section-title">{m.services.title}</h2>
-      <div class="section-sub max-w-[52rem] mx-auto">{m.services.sub}</div>
-      <div class="cards-grid cards-grid--services">
-        {
-          m.services.items.map((s) => (
-            <div class="card card--service">
-              <button class="card--service-header" aria-expanded="false">
-                <div class="card-icon">{s.icon}</div>
-                <h3 class="card--service-title">{s.title}</h3>
-                <div class="service-meta">
-                  {s.price}
-                  <span class="sep">·</span>
-                  {s.timeline}
-                </div>
-                <span class="card--service-chevron" aria-hidden="true"></span>
-              </button>
-              <div class="card--service-collapse">
-                <p class="card--service-desc">{s.desc}</p>
-                <ul class="card--service-features">
-                  {s.features.map((f) => <li>{f}</li>)}
-                </ul>
-                <a href="#contact" class="btn btn-primary card--service-cta">
-                  {s.cta}
-                </a>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section id="portfolio" class="section">
-    <div class="container">
-      <h2 class="section-title">{m.portfolio.title}</h2>
-      <div class="portfolio-grid">
-        {m.portfolio.items.map((p) => (
-          <div class="portfolio-card">
-            <div class="portfolio-card-header">
-              <span class="portfolio-name">{p.name}</span>
-              <a href={p.url} class="portfolio-link" target="_blank" rel="noopener noreferrer">{p.cta}</a>
-            </div>
-            <p class="portfolio-desc">{p.description}</p>
-            <div class="portfolio-tags">
-              {p.tags.map((t) => <span class="portfolio-tag">{t}</span>)}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section mid-cta-band section--surface" aria-label={m.midCta.title}>
-    <div class="container mid-cta-inner">
-      <p class="mid-cta-title">{m.midCta.title}</p>
-      <p class="mid-cta-sub">{m.midCta.sub}</p>
-      <a href="#contact" class="btn btn-primary">{m.midCta.btn}</a>
-    </div>
-  </section>
-
-  <section id="blog" class="section">
-    <div class="container">
-      <h2 class="section-title">{m.blogSection.title}</h2>
-      <div class="section-sub">{m.blogSection.sub}</div>
-      <div class="cards-grid">
-        {
-          recentPosts.map((post, idx) => (
-            <a href={`${base}/blog/${post.slug}`} class:list={["blog-card", idx > 0 ? "blog-card--hidden-mob" : null]}>
-              <div class="blog-image">{post.emoji}</div>
-              <div class="blog-content">
-                <span class="blog-tag">{post.tag}</span>
-                <h3 class="blog-title">{post.title}</h3>
-                <p class="blog-desc">{post.description}</p>
-                <div class="blog-meta">
-                  <span>📅 {post.dateLabel}</span>
-                  <span>⏱ {post.readLabel}</span>
-                </div>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-
-      <div class="blog-section-actions">
-        <button
-          class="btn btn-outline blog-show-all-btn"
-          data-label={lang === "ru" ? "Все статьи" : "All articles"}
-        >
-          {lang === "ru" ? "Все статьи" : "All articles"}
-        </button>
-        <a href={`${base}/blog`} class="btn btn-primary">{m.blogSection.viewAll}</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="terms" class="section section--surface">
-    <div class="container">
-      <h2 class="section-title">{m.terms.title}</h2>
-      <ul class="terms-list">
-        {m.terms.items.map((line) => <li>{line}</li>)}
-      </ul>
-      <p class="terms-closing">{m.terms.closing}</p>
-    </div>
-  </section>
-
-  <section id="contact" class="section section--surface">
-    <div class="container">
-      <div class="form-card form-card--contact">
-        <h2 class="section-title">{m.contact.title}</h2>
-        <p class="contact-sub">{m.contact.sub}</p>
-        <div class="contact-cta-row">
-          <a href={telegramDirectUrl} class="btn btn-primary contact-cta" target="_blank" rel="noopener noreferrer">
-            {m.contact.ctaTelegram}
-          </a>
-          <a href={googleFormUrl} class="btn btn-outline contact-cta" target="_blank" rel="noopener noreferrer">
-            {m.contact.ctaForm}
-          </a>
-        </div>
-        <p class="contact-privacy">{m.contact.privacy}</p>
-      </div>
-    </div>
-  </section>
+  <LandingHeroSection m={m} base={base} telegramDirectUrl={telegramDirectUrl} />
+  <LandingAudienceSection m={m} />
+  <LandingWhyUsSection lang={lang} m={m} />
+  <LandingServicesSection m={m} />
+  <LandingPortfolioSection m={m} />
+  <LandingMidCtaSection m={m} />
+  <LandingBlogPreviewSection lang={lang} m={m} base={base} recentPosts={recentPosts} />
+  <LandingTermsSection m={m} />
+  <LandingContactSection m={m} telegramDirectUrl={telegramDirectUrl} googleFormUrl={googleFormUrl} />
 </main>
 
-<div class="sticky-cta-bar">
-  <a href="#contact" class="btn btn-primary sticky-cta-btn">{m.midCta.btn}</a>
-</div>
+<LandingStickyCtaBar m={m} />
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo-row">
-          <a class="footer-logo-block" href={base}>
-            <span class="logo-wordmark footer-wordmark" aria-label="Vibecraft">
-              <span class="logo-vibe">VIBE</span><span class="logo-craft">CRAFT</span>
-            </span>
-            <span class="footer-logo-sub">{m.footer.taglineSub}</span>
-          </a>
-        </div>
-        <p class="footer-motto">{m.footer.motto}</p>
-      </div>
-      <div class="footer-links">
-        <h4>{m.footer.navCol}</h4>
-        <a href="#services">{m.nav.services}</a>
-        <a href="#why-us">{m.nav.benefits}</a>
-        <a href={`${base}/blog`}>{m.nav.blog}</a>
-        <a href="#terms">{m.terms.shortNav}</a>
-        <a href="#contact">{m.nav.contact}</a>
-      </div>
-      <div class="footer-links">
-        <h4>{m.footer.contactsCol}</h4>
-        <a href={`mailto:${m.footer.email}`}>{m.footer.email}</a>
-        <a href={telegramDirectUrl} target="_blank" rel="noopener noreferrer">{m.footer.tgDirect}</a>
-      </div>
-    </div>
-    <div class="copyright">© {new Date().getFullYear()} Vibecraft. {m.footer.rights}</div>
-  </div>
-</footer>
+<LandingFooterSection m={m} base={base} telegramDirectUrl={telegramDirectUrl} />
 
-<script is:inline>
-  const navToggle = document.getElementById("nav-open");
-  const burger = document.getElementById("nav-burger");
-  const headerEl = document.querySelector("header.header");
-  const labelOpen = headerEl?.dataset.menuOpenLabel ?? "Open menu";
-  const labelClose = headerEl?.dataset.menuCloseLabel ?? "Close menu";
-
-  function syncNavAria() {
-    if (!navToggle || !burger) return;
-    const open = navToggle.checked;
-    burger.setAttribute("aria-expanded", open ? "true" : "false");
-    burger.setAttribute("aria-label", open ? labelClose : labelOpen);
-  }
-
-  navToggle?.addEventListener("change", syncNavAria);
-  syncNavAria();
-
-  document.querySelectorAll(".nav-panel-inner a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (navToggle) navToggle.checked = false;
-      syncNavAria();
-    });
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const id = this.getAttribute("href");
-      if (!id || id === "#") return;
-      const target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
-
-  // Why-us: "Show more" button
-  const whyMoreBtn = document.querySelector(".why-us-more-btn");
-  if (whyMoreBtn) {
-    whyMoreBtn.addEventListener("click", function () {
-      document.querySelectorAll(".why-card--hidden-mob").forEach((card) => {
-        card.classList.remove("why-card--hidden-mob");
-      });
-      this.closest(".why-us-more-wrap")?.remove();
-    });
-  }
-
-  // Services: toggle card expand
-  document.querySelectorAll(".card--service-header").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const card = this.closest(".card--service");
-      if (!card) return;
-      const expanded = card.classList.toggle("card--service-expanded");
-      this.setAttribute("aria-expanded", expanded ? "true" : "false");
-    });
-  });
-
-  // Blog: "Show all" button
-  const blogShowAllBtn = document.querySelector(".blog-show-all-btn");
-  if (blogShowAllBtn) {
-    blogShowAllBtn.addEventListener("click", function () {
-      document.querySelectorAll(".blog-card--hidden-mob").forEach((card) => {
-        card.classList.remove("blog-card--hidden-mob");
-      });
-      this.remove();
-    });
-  }
-</script>
+<LandingPageInteractions />

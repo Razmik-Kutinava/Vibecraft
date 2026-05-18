@@ -1,0 +1,29 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  m: LandingMessages;
+  telegramDirectUrl: string;
+  googleFormUrl: string;
+}
+
+const { m, telegramDirectUrl, googleFormUrl } = Astro.props;
+---
+
+<section id="contact" class="section section--surface">
+  <div class="container">
+    <div class="form-card form-card--contact">
+      <h2 class="section-title">{m.contact.title}</h2>
+      <p class="contact-sub">{m.contact.sub}</p>
+      <div class="contact-cta-row">
+        <a href={telegramDirectUrl} class="btn btn-primary contact-cta" target="_blank" rel="noopener noreferrer">
+          {m.contact.ctaTelegram}
+        </a>
+        <a href={googleFormUrl} class="btn btn-outline contact-cta" target="_blank" rel="noopener noreferrer">
+          {m.contact.ctaForm}
+        </a>
+      </div>
+      <p class="contact-privacy">{m.contact.privacy}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  m: LandingMessages;
+}
+
+const { m } = Astro.props;
+---
+
+<section id="terms" class="section section--surface">
+  <div class="container">
+    <h2 class="section-title">{m.terms.title}</h2>
+    <ul class="terms-list">
+      {m.terms.items.map((line) => <li>{line}</li>)}
+    </ul>
+    <p class="terms-closing">{m.terms.closing}</p>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  m: LandingMessages;
+  base: string;
+  telegramDirectUrl: string;
+}
+
+const { m, base, telegramDirectUrl } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-row">
+          <a class="footer-logo-block" href={base}>
+            <span class="logo-wordmark footer-wordmark" aria-label="Vibecraft">
+              <span class="logo-vibe">VIBE</span><span class="logo-craft">CRAFT</span>
+            </span>
+            <span class="footer-logo-sub">{m.footer.taglineSub}</span>
+          </a>
+        </div>
+        <p class="footer-motto">{m.footer.motto}</p>
+      </div>
+      <div class="footer-links">
+        <h4>{m.footer.navCol}</h4>
+        <a href="#services">{m.nav.services}</a>
+        <a href="#why-us">{m.nav.benefits}</a>
+        <a href={`${base}/blog`}>{m.nav.blog}</a>
+        <a href="#terms">{m.terms.shortNav}</a>
+        <a href="#contact">{m.nav.contact}</a>
+      </div>
+      <div class="footer-links">
+        <h4>{m.footer.contactsCol}</h4>
+        <a href={`mailto:${m.footer.email}`}>{m.footer.email}</a>
+        <a href={telegramDirectUrl} target="_blank" rel="noopener noreferrer">{m.footer.tgDirect}</a>
+      </div>
+    </div>
+    <div class="copyright">© {new Date().getFullYear()} Vibecraft. {m.footer.rights}</div>
+  </div>
+</footer>

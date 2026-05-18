@@ -1,0 +1,31 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+import HeroIsland from "@/components/hero/HeroIsland.tsx";
+
+interface Props {
+  m: LandingMessages;
+  base: string;
+  telegramDirectUrl: string;
+}
+
+const { m, base, telegramDirectUrl } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-layout">
+      <div class="hero-inner">
+        <h1>{m.hero.h1}</h1>
+        <p>{m.hero.lead}</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">{m.hero.ctaPrimary}</a>
+          <a href={telegramDirectUrl} class="hero-tg-link" target="_blank" rel="noopener noreferrer">{m.hero.ctaTelegram}</a>
+        </div>
+        <a href={`${base}/blog`} class="hero-trust-line">{m.hero.trustLine}</a>
+      </div>
+      <div class="hero-visual hidden lg:block" aria-hidden="true">
+        <HeroIsland client:visible />
+      </div>
+    </div>
+  </div>
+</section>

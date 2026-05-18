@@ -1,0 +1,48 @@
+---
+import type { Lang } from "@/i18n/landing";
+import type { LandingMessages } from "@/i18n/landing";
+import type { LandingBlogPreview } from "./types";
+
+interface Props {
+  lang: Lang;
+  m: LandingMessages;
+  base: string;
+  recentPosts: LandingBlogPreview[];
+}
+
+const { lang, m, base, recentPosts } = Astro.props;
+
+const articlesLabelShort = lang === "ru" ? "Все статьи" : "All articles";
+---
+
+<section id="blog" class="section">
+  <div class="container">
+    <h2 class="section-title">{m.blogSection.title}</h2>
+    <div class="section-sub">{m.blogSection.sub}</div>
+    <div class="cards-grid">
+      {
+        recentPosts.map((post, idx) => (
+          <a href={`${base}/blog/${post.slug}`} class:list={["blog-card", idx > 0 ? "blog-card--hidden-mob" : null]}>
+            <div class="blog-image">{post.emoji}</div>
+            <div class="blog-content">
+              <span class="blog-tag">{post.tag}</span>
+              <h3 class="blog-title">{post.title}</h3>
+              <p class="blog-desc">{post.description}</p>
+              <div class="blog-meta">
+                <span>📅 {post.dateLabel}</span>
+                <span>⏱ {post.readLabel}</span>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="blog-section-actions">
+      <button class="btn btn-outline blog-show-all-btn" data-label={articlesLabelShort}>
+        {articlesLabelShort}
+      </button>
+      <a href={`${base}/blog`} class="btn btn-primary">{m.blogSection.viewAll}</a>
+    </div>
+  </div>
+</section>

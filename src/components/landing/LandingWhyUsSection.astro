@@ -1,0 +1,33 @@
+---
+import type { Lang } from "@/i18n/landing";
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  lang: Lang;
+  m: LandingMessages;
+}
+
+const { lang, m } = Astro.props;
+const showMore = lang === "ru" ? "Показать ещё" : "Show more";
+---
+
+<section id="why-us" class="section section--surface section--ambient-orb">
+  <div class="container">
+    <h2 class="section-title">{m.whyUs.title}</h2>
+    <div class="why-grid">
+      {
+        m.whyUs.items.map((item, idx) => (
+          <div class:list={["why-card", idx >= 3 ? "why-card--hidden-mob" : null]}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="why-us-more-wrap">
+      <button class="btn btn-outline why-us-more-btn" data-label-show={showMore}>
+        {showMore}
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+import type { Lang } from "@/i18n/landing";
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  lang: Lang;
+  m: LandingMessages;
+  base: string;
+  menuOpenLabel: string;
+  menuCloseLabel: string;
+  menuNavLabel: string;
+}
+
+const { lang, m, base, menuOpenLabel, menuCloseLabel, menuNavLabel } = Astro.props;
+---
+
+<header class="header" data-menu-open-label={menuOpenLabel} data-menu-close-label={menuCloseLabel}>
+  <div class="container nav-container">
+    <input type="checkbox" id="nav-open" class="nav-toggle-input" tabindex="-1" />
+    <div class="nav-bar">
+      <div class="logo-brand">
+        <a class="logo-link" href={base}>
+          <span class="logo-wordmark" aria-label="Vibecraft">
+            <span class="logo-vibe">VIBE</span><span class="logo-craft">CRAFT</span>
+          </span>
+          <span class="logo-tagline">{m.nav.tagline}</span>
+        </a>
+      </div>
+      <label
+        for="nav-open"
+        class="nav-burger"
+        id="nav-burger"
+        tabindex="0"
+        aria-controls="nav-panel"
+        aria-expanded="false"
+        aria-label={menuOpenLabel}
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </label>
+    </div>
+    <nav id="nav-panel" class="nav-panel" aria-label={menuNavLabel}>
+      <label for="nav-open" class="nav-scrim"></label>
+      <div class="nav-panel-inner">
+        <a href="#why-us">{m.nav.benefits}</a>
+        <a href="#services">{m.nav.services}</a>
+        <a href={`${base}/blog`}>{m.nav.blog}</a>
+        <a href="#terms">{m.terms.shortNav}</a>
+        <a href="#contact">{m.nav.contact}</a>
+        <div class="lang-switch">
+          <a href="/ru/" class:list={[{ "is-active": lang === "ru" }]}>{m.nav.langRu}</a>
+          <a href="/en/" class:list={[{ "is-active": lang === "en" }]}>{m.nav.langEn}</a>
+        </div>
+        <a href="#contact" class="btn btn-primary nav-cta">{m.nav.order}</a>
+      </div>
+    </nav>
+  </div>
+</header>

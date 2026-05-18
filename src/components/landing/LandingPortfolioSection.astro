@@ -1,0 +1,31 @@
+---
+import type { LandingMessages } from "@/i18n/landing";
+
+interface Props {
+  m: LandingMessages;
+}
+
+const { m } = Astro.props;
+---
+
+<section id="portfolio" class="section">
+  <div class="container">
+    <h2 class="section-title">{m.portfolio.title}</h2>
+    <div class="portfolio-grid">
+      {
+        m.portfolio.items.map((p) => (
+          <div class="portfolio-card">
+            <div class="portfolio-card-header">
+              <span class="portfolio-name">{p.name}</span>
+              <a href={p.url} class="portfolio-link" target="_blank" rel="noopener noreferrer">{p.cta}</a>
+            </div>
+            <p class="portfolio-desc">{p.description}</p>
+            <div class="portfolio-tags">
+              {p.tags.map((t) => <span class="portfolio-tag">{t}</span>)}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
