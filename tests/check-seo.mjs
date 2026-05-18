@@ -5,8 +5,12 @@
 
 import fs from "fs";
 import path from "path";
-
-const dist = path.resolve("dist");
+import {
+  DIST_DIR,
+  extractHead,
+  headHasRobotsNoindex,
+  readDistFile,
+} from "./lib/pageTestUtils.mjs";
 
 const PAGES = [
   { file: "ru/index.html", lang: "ru", shouldHaveHreflang: true },
@@ -30,31 +34,16 @@ function check(label, condition) {
   }
 }
 
-/** Только `<head>...</head>` — тело страницы (статьи) не должно ломать проверку robots/noindex */
-function extractHead(html) {
-  const m = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i);
-  return m ? m[1] : "";
-}
-
-function headHasRobotsNoindex(headHtml) {
-  const metaTags = headHtml.match(/<meta\b[^>]*>/gi) || [];
-  for (const tag of metaTags) {
-    if (!/\bname\s*=\s*["']robots["']/i.test(tag)) continue;
-    if (/\bcontent\s*=\s*["'][^"']*noindex/i.test(tag)) return true;
-  }
-  return false;
-}
-
 console.log("=== SEO META TAGS TEST ===\n");
 
 for (const page of PAGES) {
-  const full = path.join(dist, page.file);
+  const full = path.join(DIST_DIR, page.file);
   if (!fs.existsSync(full)) {
     console.log(`  SKIP (file missing): ${page.file}`);
     continue;
   }
 
-  const html = fs.readFileSync(full, "utf-8");
+  const html = readDistFile(page.file);
   const headHtml = extractHead(html);
   console.log(`\n  [${page.file}]`);
 
@@ -79,10 +68,7 @@ for (const page of PAGES) {
   if (page.file === "404.html") {
     check("robots noindex на 404", headHasRobotsNoindex(headHtml));
   } else {
-    check(
-      "нет robots noindex в <head>",
-      !headHasRobotsNoindex(headHtml),
-    );
+    check("нет robots noindex в <head>", !headHasRobotsNoindex(headHtml));
   }
 
   if (page.lang) {

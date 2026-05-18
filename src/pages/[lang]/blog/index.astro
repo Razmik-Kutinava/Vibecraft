@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import { getLandingMessages, type Lang } from "@/i18n/landing";
 import { defaultOgImage, getSiteUrl } from "@/lib/site";
+import { SITE_BODY_CLASS, ogLocalePair } from "@/lib/layoutProps";
 import { jsonLdBlogBreadcrumbTrail } from "@/lib/blogBreadcrumbs";
 import { breadcrumbList, organizationNode } from "@/lib/schema";
 import { formatPostDate, readTimeLabel } from "@/lib/formatDate";
@@ -39,11 +40,10 @@ const alternates = [
   canonicalPath={canonicalPath}
   ogImage={defaultOgImage}
   htmlLang={lang}
-  ogLocale={lang === "ru" ? "ru_RU" : "en_US"}
-  ogLocaleAlternate={lang === "ru" ? ["en_US"] : ["ru_RU"]}
+  {...ogLocalePair(lang)}
   alternates={alternates}
   jsonLd={graph}
-  bodyClass="min-h-screen bg-background text-foreground font-sans antialiased"
+  bodyClass={SITE_BODY_CLASS}
 >
   <main class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
     <a

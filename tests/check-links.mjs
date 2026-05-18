@@ -6,7 +6,7 @@
 import fs from "fs";
 import path from "path";
 
-const dist = path.resolve("dist");
+import { DIST_DIR } from "./lib/pageTestUtils.mjs";
 
 function getAllHtmlFiles(dir) {
   const results = [];
@@ -29,12 +29,11 @@ function extractInternalLinks(html) {
 }
 
 function resolveToFile(href) {
-  // /ru/ → dist/ru/index.html
   const withoutTrailing = href.replace(/\/$/, "");
   const candidates = [
-    path.join(dist, href, "index.html"),
-    path.join(dist, withoutTrailing + ".html"),
-    path.join(dist, withoutTrailing, "index.html"),
+    path.join(DIST_DIR, href, "index.html"),
+    path.join(DIST_DIR, withoutTrailing + ".html"),
+    path.join(DIST_DIR, withoutTrailing, "index.html"),
   ];
   return candidates.find((c) => fs.existsSync(c)) || null;
 }
@@ -47,12 +46,12 @@ let passed = 0;
 let failed = 0;
 const broken = [];
 
-const htmlFiles = getAllHtmlFiles(dist);
+const htmlFiles = getAllHtmlFiles(DIST_DIR);
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf-8");
   const links = extractInternalLinks(html);
-  const relative = path.relative(dist, file);
+  const relative = path.relative(DIST_DIR, file);
 
   for (const href of links) {
     if (IGNORE_PREFIXES.some((p) => href.startsWith(p))) continue;

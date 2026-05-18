@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { SITE_BODY_CLASS } from "@/lib/layoutProps";
 
 /** Базово RU: для статики `404.html` `Astro.url.pathname` часто `/404`, а не запрос пользователя — язык уточняет инлайн-скрипт **после** `<main>`, когда `#error-*` уже в DOM (в `<head>` `getElementById` давал бы `null`). */
 const title = "404 — страница не найдена | Vibecraft";
@@ -16,7 +17,7 @@ const lead = "Проверьте адрес или вернитесь на гл�
   canonicalPath="/404"
   robots="noindex, nofollow"
   htmlLang="ru"
-  bodyClass="min-h-screen bg-background text-foreground font-sans antialiased"
+  bodyClass={SITE_BODY_CLASS}
 >
   <main class="mx-auto flex max-w-lg flex-col items-center justify-center px-4 py-24 text-center">
     <p class="font-mono text-sm uppercase tracking-widest text-neon">404</p>

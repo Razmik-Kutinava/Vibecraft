@@ -6,7 +6,7 @@
 import fs from "fs";
 import path from "path";
 
-const dist = path.resolve("dist");
+import { DIST_DIR } from "./lib/pageTestUtils.mjs";
 
 const REQUIRED_FILES = [
   "index.html",
@@ -25,7 +25,7 @@ let failed = 0;
 console.log("=== BUILD STRUCTURE TEST ===\n");
 
 for (const file of REQUIRED_FILES) {
-  const full = path.join(dist, file);
+  const full = path.join(DIST_DIR, file);
   const exists = fs.existsSync(full);
   if (exists) {
     console.log(`  ✓  ${file}`);
@@ -36,7 +36,6 @@ for (const file of REQUIRED_FILES) {
   }
 }
 
-// Проверяем blog-посты
 const blogSlugs = [
   "ru/blog/coffee-os",
   "en/blog/coffee-os",
@@ -46,7 +45,7 @@ const blogSlugs = [
   "en/blog/slow-site-loses-clients",
 ];
 for (const slug of blogSlugs) {
-  const full = path.join(dist, slug, "index.html");
+  const full = path.join(DIST_DIR, slug, "index.html");
   const exists = fs.existsSync(full);
   if (exists) {
     console.log(`  ✓  ${slug}/index.html`);
@@ -57,9 +56,8 @@ for (const slug of blogSlugs) {
   }
 }
 
-// Размеры JS чанков
 console.log("\n--- JS Chunk sizes ---");
-const astroDir = path.join(dist, "_astro");
+const astroDir = path.join(DIST_DIR, "_astro");
 if (fs.existsSync(astroDir)) {
   const files = fs.readdirSync(astroDir).filter((f) => f.endsWith(".js"));
   for (const f of files) {

@@ -5,8 +5,11 @@
 
 import fs from "fs";
 import path from "path";
-
-const dist = path.resolve("dist");
+import {
+  DIST_DIR,
+  extractJsonLd,
+  readDistFile,
+} from "./lib/pageTestUtils.mjs";
 
 let passed = 0;
 let failed = 0;
@@ -21,25 +24,11 @@ function check(label, condition, detail = "") {
   }
 }
 
-function extractJsonLd(html) {
-  const results = [];
-  const re = /<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g;
-  let m;
-  while ((m = re.exec(html)) !== null) {
-    try {
-      results.push(JSON.parse(m[1]));
-    } catch (e) {
-      results.push(null);
-    }
-  }
-  return results;
-}
-
 console.log("=== JSON-LD SCHEMA TEST ===\n");
 
 // Лендинг RU
 {
-  const html = fs.readFileSync(path.join(dist, "ru/index.html"), "utf-8");
+  const html = readDistFile("ru/index.html");
   const schemas = extractJsonLd(html);
   console.log(`  [ru/index.html] — найдено JSON-LD блоков: ${schemas.length}`);
 
@@ -73,7 +62,7 @@ console.log("=== JSON-LD SCHEMA TEST ===\n");
 
 // Лендинг EN — ProfessionalService и sameAs должны быть согласованы с локалью
 {
-  const html = fs.readFileSync(path.join(dist, "en/index.html"), "utf-8");
+  const html = readDistFile("en/index.html");
   const schemas = extractJsonLd(html);
   console.log(`\n  [en/index.html] — найдено JSON-LD блоков: ${schemas.length}`);
 
@@ -102,9 +91,9 @@ console.log("=== JSON-LD SCHEMA TEST ===\n");
 
 // Блог-пост
 {
-  const blogPost = path.join(dist, "ru/blog/coffee-os/index.html");
+  const blogPost = path.join(DIST_DIR, "ru/blog/coffee-os/index.html");
   if (fs.existsSync(blogPost)) {
-    const html = fs.readFileSync(blogPost, "utf-8");
+    const html = readDistFile("ru/blog/coffee-os/index.html");
     const schemas = extractJsonLd(html);
     console.log(`\n  [ru/blog/coffee-os] — найдено JSON-LD блоков: ${schemas.length}`);
 
