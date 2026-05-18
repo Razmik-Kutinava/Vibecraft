@@ -64,6 +64,12 @@ export interface LandingMessages {
     back: string;
     backToBlog: string;
   };
+  terms: {
+    title: string;
+    shortNav: string;
+    items: string[];
+    closing: string;
+  };
   contact: {
     title: string;
     sub: string;
@@ -241,6 +247,19 @@ const ru: LandingMessages = {
     ctaForm: "Оставить заявку",
     privacy: "Контакт используется только для ответа по вашей задаче.",
   },
+  terms: {
+    title: "Как мы работаем",
+    shortNav: "Условия",
+    items: [
+      "Цену и срок фиксируем до старта. Две итерации правок после согласования объёма — дальше только по доп. соглашению.",
+      "Тексты, фото, логотип — готовит клиент. Без материалов старт сдвигается.",
+      "Внешний вид — как в описании тарифа: аккуратно и по делу, без отдельного UI/UX-проекта в Figma.",
+      "CRM, оплаты, сложные калькуляторы и нестандартные интеграции — обсуждаем отдельно, это не «просто форма».",
+      "14 дней после запуска — правки по багам. Правки контента после сдачи — по отдельной договорённости.",
+      "Домен и хостинг — на вашей стороне. С деплоем помогаю, продление и счета — у вас.",
+    ],
+    closing: "Вопросы по рамкам — обсудим до старта, без обязательств.",
+  },
   footer: {
     tagline: "VIBECRAFT",
     taglineSub: "лендинги на Astro",
@@ -410,6 +429,19 @@ const en: LandingMessages = {
     ctaTelegram: "Message on Telegram",
     ctaForm: "Submit a request",
     privacy: "Your contact is only used to follow up on your request.",
+  },
+  terms: {
+    title: "How we work",
+    shortNav: "Terms",
+    items: [
+      "Price and timeline are agreed before kickoff. Two revision rounds after scope sign-off — beyond that, only via a change order.",
+      "Copy, photos, and logo come from you. Without assets, the start date moves.",
+      "Visuals follow the package description: clean and practical — no standalone Figma UI/UX engagement.",
+      "CRM, payments, heavy calculators, and custom integrations are scoped separately — not “just a form”.",
+      "14 days after launch: bugfixes. Content tweaks after handover: separate agreement.",
+      "Domain and hosting stay on your accounts. I'll help with deploy; renewals and bills are yours.",
+    ],
+    closing: "Questions about scope — we align before kickoff, no strings attached.",
   },
   footer: {
     tagline: "VIBECRAFT",

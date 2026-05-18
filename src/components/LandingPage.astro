@@ -62,6 +62,7 @@ const googleFormUrl =
         <a href="#why-us">{m.nav.benefits}</a>
         <a href="#services">{m.nav.services}</a>
         <a href={`${base}/blog`}>{m.nav.blog}</a>
+        <a href="#terms">{m.terms.shortNav}</a>
         <a href="#contact">{m.nav.contact}</a>
         <div class="lang-switch">
           <a href="/ru/" class:list={[{ "is-active": lang === "ru" }]}>{m.nav.langRu}</a>
@@ -237,6 +238,16 @@ const googleFormUrl =
     </div>
   </section>
 
+  <section id="terms" class="section section--surface">
+    <div class="container">
+      <h2 class="section-title">{m.terms.title}</h2>
+      <ul class="terms-list">
+        {m.terms.items.map((line) => <li>{line}</li>)}
+      </ul>
+      <p class="terms-closing">{m.terms.closing}</p>
+    </div>
+  </section>
+
   <section id="contact" class="section section--surface">
     <div class="container">
       <div class="form-card form-card--contact">
@@ -279,6 +290,7 @@ const googleFormUrl =
         <a href="#services">{m.nav.services}</a>
         <a href="#why-us">{m.nav.benefits}</a>
         <a href={`${base}/blog`}>{m.nav.blog}</a>
+        <a href="#terms">{m.terms.shortNav}</a>
         <a href="#contact">{m.nav.contact}</a>
       </div>
       <div class="footer-links">
