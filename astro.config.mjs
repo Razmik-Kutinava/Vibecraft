@@ -45,11 +45,10 @@ process.env.PUBLIC_SITE_URL = site;
 
 export default defineConfig({
   site,
-  // Sharp часто недоступен на win32-arm64; noop даёт тот же `<Image />` без ресайза/WebP на билде.
-  // Для полной оптимизации на Linux/x64: `entrypoint: "astro/assets/services/sharp"` и `npm i sharp`.
+  // Sharp даёт ресайз/WebP для `<Image />` на типичных Linux/x64 и win32-x64. На win32-arm64 при падении sharp — временно noop + `npm i`.
   image: {
     service: {
-      entrypoint: "astro/assets/services/noop",
+      entrypoint: "astro/assets/services/sharp",
     },
   },
   integrations: [

@@ -136,14 +136,6 @@ export const landingMessagesEn: LandingMessages = {
         tags: ["Astro", "Landing", "Lead capture", "Multilingual"],
         cta: "Visit site →",
       },
-      {
-        name: "Telegram quiz for hospitality",
-        url: "https://t.me/Razmik6",
-        description:
-          "A lightweight Telegram quiz scenario for hospitality: preference capture and engagement without shipping a standalone app first.",
-        tags: ["Telegram", "Quiz", "HoReCa"],
-        cta: "Discuss a similar build →",
-      },
     ],
   },
   midCta: {

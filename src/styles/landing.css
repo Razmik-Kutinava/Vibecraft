@@ -476,6 +476,11 @@ html:has(#nav-open:checked) {
     gap: 2rem 2.25rem;
     align-items: center;
   }
+
+  /* Когда 3D островок отключён — не оставлять пустую правую колонку сетки */
+  .hero-layout--no-canvas {
+    grid-template-columns: 1fr;
+  }
 }
 
 .hero-visual {

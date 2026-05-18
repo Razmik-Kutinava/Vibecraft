@@ -126,7 +126,7 @@ export const landingMessagesRu: LandingMessages = {
     ],
   },
   portfolio: {
-    title: "Примеры работ",
+    title: "Пример работы",
     items: [
       {
         name: "HayPsy",
@@ -135,14 +135,6 @@ export const landingMessagesRu: LandingMessages = {
           "Лендинг для платформы психологической помощи (EN / RU / HY): лид-форма и промо оффера, подготовка к запуску приложения.",
         tags: ["Astro", "Лендинг", "Лид-форма", "Мультиязык"],
         cta: "Открыть сайт →",
-      },
-      {
-        name: "Telegram: квиз для бара",
-        url: "https://t.me/Razmik6",
-        description:
-          "Клиентский квиз и сценарий в Telegram для HoReCa: собрать предпочтения и вовлечь аудиторию без тяжёлого приложения на старте.",
-        tags: ["Telegram", "Квиз", "HoReCa"],
-        cta: "Обсудить такой формат →",
       },
     ],
   },

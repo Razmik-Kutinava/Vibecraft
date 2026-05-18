@@ -1,6 +1,7 @@
 ---
 import type { LandingMessages } from "@/i18n/landing";
-import HeroIsland from "@/components/hero/HeroIsland.tsx";
+// 3D Hero (Three.js) отключён для LCP/JS — компоненты в @/components/hero/ сохранены для будущего включения.
+// import HeroIsland from "@/components/hero/HeroIsland.tsx";
 
 interface Props {
   m: LandingMessages;
@@ -13,7 +14,7 @@ const { m, base, telegramDirectUrl } = Astro.props;
 
 <section class="hero">
   <div class="container">
-    <div class="hero-layout">
+    <div class="hero-layout hero-layout--no-canvas">
       <div class="hero-inner">
         <h1>{m.hero.h1}</h1>
         <p>{m.hero.lead}</p>
@@ -28,9 +29,11 @@ const { m, base, telegramDirectUrl } = Astro.props;
         </div>
         <a href={`${base}/blog`} class="hero-trust-line">{m.hero.trustLine}</a>
       </div>
+      {/*
       <div class="hero-visual hidden lg:block" aria-hidden="true">
         <HeroIsland client:visible />
       </div>
+      */}
     </div>
   </div>
 </section>
