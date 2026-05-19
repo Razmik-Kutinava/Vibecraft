@@ -5,9 +5,9 @@ export const landingMessagesEn: LandingMessages = {
     home: "Home",
   },
   seo: {
-    title: "Vibecraft — landing pages on Astro | With or without a database",
+    title: "Vibecraft — Astro landing pages | From $500, with or without DB",
     description:
-      "We build fast, quality landing pages on Astro — with SEO out of the box. Simple landing from $500, with database and lead form from $800. Source code and access are yours.",
+      "Fast, quality landing pages on Astro — SEO out of the box. Simple landing from $500, with database and lead form from $800. Source code and access are yours.",
     keywords:
       "landing page development, Astro landing, custom site, landing with database, lead form, business website, fast landing",
   },
