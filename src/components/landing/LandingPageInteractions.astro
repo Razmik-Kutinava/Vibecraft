@@ -54,12 +54,17 @@
     });
   }
 
-  document.querySelectorAll(".card--service-btn").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const card = this.closest(".card--service");
-      if (!card) return;
-      const expanded = card.classList.toggle("card--service-expanded");
-      this.setAttribute("aria-expanded", expanded ? "true" : "false");
+  function toggleServiceCard(el) {
+    const card = el.closest(".card--service");
+    if (!card) return;
+    const expanded = card.classList.toggle("card--service-expanded");
+    el.setAttribute("aria-expanded", expanded ? "true" : "false");
+  }
+
+  document.querySelectorAll(".card--service-header").forEach((btn) => {
+    btn.addEventListener("click", function () { toggleServiceCard(this); });
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleServiceCard(this); }
     });
   });
 
