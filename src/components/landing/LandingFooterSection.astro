@@ -15,8 +15,8 @@ const { m, base, telegramDirectUrl } = Astro.props;
     <div class="footer-grid">
       <div>
         <div class="footer-logo-row">
-          <a class="footer-logo-block" href={base}>
-            <span class="logo-wordmark footer-wordmark" aria-label="Vibecraft">
+          <a class="footer-logo-block" href={base} aria-label="Vibecraft">
+            <span class="logo-wordmark footer-wordmark" role="img" aria-hidden="true">
               <span class="logo-vibe">VIBE</span><span class="logo-craft">CRAFT</span>
             </span>
             <span class="footer-logo-sub">{m.footer.taglineSub}</span>
@@ -25,7 +25,7 @@ const { m, base, telegramDirectUrl } = Astro.props;
         <p class="footer-motto">{m.footer.motto}</p>
       </div>
       <div class="footer-links">
-        <h4>{m.footer.navCol}</h4>
+        <p class="footer-col-title">{m.footer.navCol}</p>
         <a href="#services">{m.nav.services}</a>
         <a href="#why-us">{m.nav.benefits}</a>
         <a href={`${base}/blog`}>{m.nav.blog}</a>
@@ -33,7 +33,7 @@ const { m, base, telegramDirectUrl } = Astro.props;
         <a href="#contact">{m.nav.contact}</a>
       </div>
       <div class="footer-links">
-        <h4>{m.footer.contactsCol}</h4>
+        <p class="footer-col-title">{m.footer.contactsCol}</p>
         <a href={`mailto:${m.footer.email}`}>{m.footer.email}</a>
         <a href={telegramDirectUrl} target="_blank" rel="noopener noreferrer">{m.footer.tgDirect}</a>
       </div>

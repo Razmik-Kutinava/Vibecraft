@@ -14,7 +14,8 @@ export function organizationNode(site: string) {
     "@id": `${site}/#organization`,
     name: "Vibecraft",
     url: site,
-    logo: `${site}/favicon.png`,
+    logo: `${site}/og-image.png`,
+    image: `${site}/og-image.png`,
     email: "hello@vibecraft.su",
     sameAs,
   };
@@ -39,7 +40,8 @@ export function professionalServiceNode(site: string, lang: Lang) {
     "@id": `${site}/#professional-service`,
     name: "Vibecraft",
     url: site,
-    logo: `${site}/favicon.png`,
+    logo: `${site}/og-image.png`,
+    image: `${site}/og-image.png`,
     description,
     priceRange: "$500-$800",
     address: { "@type": "PostalAddress", addressCountry: "AM" },
@@ -116,7 +118,7 @@ export function articleJsonLd(opts: {
     publisher: {
       "@type": "Organization",
       "@id": `${opts.site}/#organization`,
-      logo: { "@type": "ImageObject", url: `${opts.site}/favicon.png` },
+      logo: { "@type": "ImageObject", url: `${opts.site}/og-image.png` },
     },
     ...(image ? { image: [image] } : {}),
   };

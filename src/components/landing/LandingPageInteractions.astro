@@ -1,25 +1,36 @@
 <script is:inline>
-  const navToggle = document.getElementById("nav-open");
   const burger = document.getElementById("nav-burger");
+  const scrim = document.getElementById("nav-scrim");
   const headerEl = document.querySelector("header.header");
   const labelOpen = headerEl?.dataset.menuOpenLabel ?? "Open menu";
   const labelClose = headerEl?.dataset.menuCloseLabel ?? "Close menu";
 
-  function syncNavAria() {
-    if (!navToggle || !burger) return;
-    const open = navToggle.checked;
-    burger.setAttribute("aria-expanded", open ? "true" : "false");
-    burger.setAttribute("aria-label", open ? labelClose : labelOpen);
+  function openNav() {
+    headerEl?.classList.add("nav-is-open");
+    document.documentElement.classList.add("nav-is-open");
+    burger?.setAttribute("aria-expanded", "true");
+    burger?.setAttribute("aria-label", labelClose);
   }
 
-  navToggle?.addEventListener("change", syncNavAria);
-  syncNavAria();
+  function closeNav() {
+    headerEl?.classList.remove("nav-is-open");
+    document.documentElement.classList.remove("nav-is-open");
+    burger?.setAttribute("aria-expanded", "false");
+    burger?.setAttribute("aria-label", labelOpen);
+  }
+
+  burger?.addEventListener("click", () => {
+    headerEl?.classList.contains("nav-is-open") ? closeNav() : openNav();
+  });
+
+  scrim?.addEventListener("click", closeNav);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && headerEl?.classList.contains("nav-is-open")) closeNav();
+  });
 
   document.querySelectorAll(".nav-panel-inner a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (navToggle) navToggle.checked = false;
-      syncNavAria();
-    });
+    link.addEventListener("click", closeNav);
   });
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -43,12 +54,17 @@
     });
   }
 
+  function toggleServiceCard(el) {
+    const card = el.closest(".card--service");
+    if (!card) return;
+    const expanded = card.classList.toggle("card--service-expanded");
+    el.setAttribute("aria-expanded", expanded ? "true" : "false");
+  }
+
   document.querySelectorAll(".card--service-header").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const card = this.closest(".card--service");
-      if (!card) return;
-      const expanded = card.classList.toggle("card--service-expanded");
-      this.setAttribute("aria-expanded", expanded ? "true" : "false");
+    btn.addEventListener("click", function () { toggleServiceCard(this); });
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleServiceCard(this); }
     });
   });
 

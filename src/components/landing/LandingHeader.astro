@@ -16,21 +16,19 @@ const { lang, m, base, menuOpenLabel, menuCloseLabel, menuNavLabel } = Astro.pro
 
 <header class="header" data-menu-open-label={menuOpenLabel} data-menu-close-label={menuCloseLabel}>
   <div class="container nav-container">
-    <input type="checkbox" id="nav-open" class="nav-toggle-input" tabindex="-1" />
     <div class="nav-bar">
       <div class="logo-brand">
-        <a class="logo-link" href={base}>
-          <span class="logo-wordmark" aria-label="Vibecraft">
+        <a class="logo-link" href={base} aria-label="Vibecraft">
+          <span class="logo-wordmark" role="img" aria-hidden="true">
             <span class="logo-vibe">VIBE</span><span class="logo-craft">CRAFT</span>
           </span>
           <span class="logo-tagline">{m.nav.tagline}</span>
         </a>
       </div>
-      <label
-        for="nav-open"
+      <button
+        type="button"
         class="nav-burger"
         id="nav-burger"
-        tabindex="0"
         aria-controls="nav-panel"
         aria-expanded="false"
         aria-label={menuOpenLabel}
@@ -38,10 +36,10 @@ const { lang, m, base, menuOpenLabel, menuCloseLabel, menuNavLabel } = Astro.pro
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
-      </label>
+      </button>
     </div>
     <nav id="nav-panel" class="nav-panel" aria-label={menuNavLabel}>
-      <label for="nav-open" class="nav-scrim"></label>
+      <div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
       <div class="nav-panel-inner">
         <a href="#why-us">{m.nav.benefits}</a>
         <a href="#services">{m.nav.services}</a>

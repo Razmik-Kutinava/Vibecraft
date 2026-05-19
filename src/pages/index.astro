@@ -7,10 +7,20 @@ const target = "/ru/";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vibecraft</title>
+    <title>Vibecraft — лендинги на Astro | от $500</title>
+    <meta name="description" content="Лендинги на Astro — быстро, с SEO из коробки. От $500, с базой от $800. Исходники и доступы — ваши." />
     <link rel="canonical" href={new URL(target, import.meta.env.PUBLIC_SITE_URL || "https://vibecraft.su").href} />
     <meta http-equiv="refresh" content={`0;url=${target}`} />
-    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vibecraft.su/" />
+    <meta property="og:title" content="Vibecraft — лендинги на Astro | от $500" />
+    <meta property="og:description" content="Лендинги на Astro — быстро, с SEO из коробки. От $500, с базой от $800. Исходники и доступы — ваши." />
+    <meta property="og:image" content="https://vibecraft.su/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vibecraft — лендинги на Astro | от $500" />
+    <meta name="twitter:description" content="Лендинги на Astro — быстро, с SEO из коробки. От $500, с базой от $800. Исходники и доступы — ваши." />
+    <meta name="twitter:image" content="https://vibecraft.su/og-image.png" />
   </head>
   <body
     style="font-family: 'Space Grotesk', system-ui, sans-serif; padding: 2rem; background: #141414; color: #f7f7f7;"

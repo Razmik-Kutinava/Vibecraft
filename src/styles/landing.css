@@ -75,7 +75,7 @@ body {
   outline-color: var(--neon);
 }
 
-html:has(#nav-open:checked) {
+html.nav-is-open {
   overflow: hidden;
 }
 
@@ -104,18 +104,9 @@ html:has(#nav-open:checked) {
   position: relative;
 }
 
-.nav-toggle-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-  opacity: 0;
-  pointer-events: none;
+.nav-burger {
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .nav-bar {
@@ -185,16 +176,16 @@ html:has(#nav-open:checked) {
     opacity 0.2s ease;
 }
 
-#nav-open:checked ~ .nav-bar .nav-burger span:nth-child(1) {
+header.nav-is-open .nav-burger span:nth-child(1) {
   transform: translateY(9px) rotate(45deg);
 }
 
-#nav-open:checked ~ .nav-bar .nav-burger span:nth-child(2) {
+header.nav-is-open .nav-burger span:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 
-#nav-open:checked ~ .nav-bar .nav-burger span:nth-child(3) {
+header.nav-is-open .nav-burger span:nth-child(3) {
   transform: translateY(-9px) rotate(-45deg);
 }
 
@@ -218,7 +209,7 @@ html:has(#nav-open:checked) {
 .nav-panel-inner > a:not(.btn) {
   font-size: 14px;
   font-weight: 500;
-  color: var(--muted-foreground);
+  color: oklch(0.72 0 0);
   transition: color 0.2s ease;
   text-decoration: none;
   border-bottom: 2px solid transparent;
@@ -246,7 +237,7 @@ html:has(#nav-open:checked) {
   font-family: "Space Mono", ui-monospace, monospace;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
-  color: var(--muted-foreground);
+  color: oklch(0.72 0 0);
   text-decoration: none;
   border-radius: 6px;
   padding: 4px 8px;
@@ -300,7 +291,7 @@ html:has(#nav-open:checked) {
     transition: visibility 0.25s step-end;
   }
 
-  #nav-open:checked ~ .nav-panel {
+  header.nav-is-open .nav-panel {
     pointer-events: auto;
     visibility: visible;
     transition: visibility 0s step-start;
@@ -337,7 +328,7 @@ html:has(#nav-open:checked) {
     overscroll-behavior: contain;
   }
 
-  #nav-open:checked ~ .nav-panel .nav-panel-inner {
+  header.nav-is-open .nav-panel .nav-panel-inner {
     transform: translateX(0);
   }
 
@@ -1215,7 +1206,7 @@ textarea:focus {
   margin-bottom: 16px;
 }
 
-.footer h4 {
+.footer-col-title {
   color: var(--foreground);
   font-size: 0.875rem;
   font-weight: 700;
@@ -1561,7 +1552,7 @@ textarea:focus {
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.03em;
-  color: var(--muted-foreground);
+  color: oklch(0.68 0 0);
   line-height: 1.2;
   max-width: 22rem;
   white-space: nowrap;
