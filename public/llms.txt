@@ -1,0 +1,33 @@
+# Vibecraft — AI-friendly site index
+# https://vibecraft.su/llms.txt
+
+> Vibecraft — web studio specialising in high-performance landing pages and Telegram Mini Apps for the HoReCa & food-tech industry.
+
+## About
+
+Vibecraft builds conversion-focused landing pages and custom Telegram Mini Apps that help restaurants, cafés, and food-service businesses attract clients and automate digital workflows.
+
+## Pages
+
+- [Home (RU)](https://vibecraft.su/ru/)
+- [Home (EN)](https://vibecraft.su/en/)
+- [Blog (RU)](https://vibecraft.su/ru/blog/)
+- [Blog (EN)](https://vibecraft.su/en/blog/)
+- [Terms (RU)](https://vibecraft.su/ru/terms/)
+- [Terms (EN)](https://vibecraft.su/en/terms/)
+
+## Blog posts
+
+- [Why landing pages don't convert](https://vibecraft.su/en/blog/why-landings-dont-convert/)
+- [How to get first leads](https://vibecraft.su/en/blog/how-to-get-first-leads/)
+- [Slow site loses clients](https://vibecraft.su/en/blog/slow-site-loses-clients/)
+- [Telegram Mini App for HoReCa](https://vibecraft.su/en/blog/telegram-mini-app-horeca/)
+- [Coffee OS](https://vibecraft.su/en/blog/coffee-os/)
+- [Coffee Pomodoro](https://vibecraft.su/en/blog/coffee-pomodoro/)
+- [IT knowledge gaps](https://vibecraft.su/en/blog/it-knowledge-gaps/)
+- [Why we don't run ads](https://vibecraft.su/en/blog/why-no-ads/)
+- [Spring bonus quiz](https://vibecraft.su/en/blog/spring-bonus-quiz/)
+
+## Contact
+
+hello@vibecraft.su

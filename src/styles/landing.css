@@ -2568,14 +2568,17 @@ textarea:focus {
   /* Service cards: no toggle on desktop */
   .card--service-header {
     display: contents;
+  }
+  .card--service-btn {
+    display: contents;
     background: none;
     border: none;
-    padding: 0;
     cursor: default;
+    color: inherit;
+    font: inherit;
     text-align: left;
-    width: 100%;
   }
-  .card--service-header .card--service-chevron {
+  .card--service-chevron {
     display: none;
   }
   .card--service-collapse {
@@ -2673,6 +2676,15 @@ textarea:focus {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    padding: 0;
+    position: relative;
+  }
+
+  .card--service-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     background: none;
     border: none;
     padding: 0;
@@ -2680,18 +2692,25 @@ textarea:focus {
     text-align: left;
     color: inherit;
     font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
     position: relative;
   }
 
+  .card--service-btn:focus-visible {
+    outline: 2px solid var(--neon);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
   .card--service-chevron {
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    display: inline-block;
+    position: relative;
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+    margin-left: auto;
   }
 
   .card--service-chevron::before,

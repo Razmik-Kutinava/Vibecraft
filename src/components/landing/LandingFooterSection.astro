@@ -34,7 +34,7 @@ const { m, base, telegramDirectUrl } = Astro.props;
       </div>
       <div class="footer-links">
         <p class="footer-col-title">{m.footer.contactsCol}</p>
-        <a href={`mailto:${m.footer.email}`}>{m.footer.email}</a>
+        <a href="#contact" class="email-link" data-user="hello" data-domain="vibecraft.su" aria-label="Email">&#8203;</a>
         <a href={telegramDirectUrl} target="_blank" rel="noopener noreferrer">{m.footer.tgDirect}</a>
       </div>
     </div>

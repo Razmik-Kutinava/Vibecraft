@@ -16,15 +16,19 @@ const { m } = Astro.props;
       {
         m.services.items.map((s) => (
           <div class="card card--service">
-            <div class="card--service-header" role="button" tabindex="0" aria-expanded="false">
-              <div class="card-icon">{s.icon}</div>
-              <h3 class="card--service-title">{s.title}</h3>
-              <div class="service-meta">
+            <div class="card--service-header">
+              <div class="card-icon" aria-hidden="true">{s.icon}</div>
+              <h3 class="card--service-title">
+                <button class="card--service-btn" aria-expanded="false">
+                  {s.title}
+                  <span class="card--service-chevron" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="service-meta" aria-hidden="true">
                 {s.price}
                 <span class="sep">·</span>
                 {s.timeline}
               </div>
-              <span class="card--service-chevron" aria-hidden="true"></span>
             </div>
             <div class="card--service-collapse">
               <p class="card--service-desc">{s.desc}</p>
