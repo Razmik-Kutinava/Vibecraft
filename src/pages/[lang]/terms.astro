@@ -1,0 +1,97 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getLandingMessages, telegramDirectUrl, type Lang } from "@/i18n/landing";
+import { defaultOgImage, getSiteUrl } from "@/lib/site";
+import { SITE_BODY_CLASS, ogLocalePair } from "@/lib/layoutProps";
+import { breadcrumbList, organizationNode } from "@/lib/schema";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "ru" } }, { params: { lang: "en" } }];
+}
+
+const raw = Astro.params.lang;
+const lang = (raw === "ru" || raw === "en" ? raw : "ru") as Lang;
+const m = getLandingMessages(lang);
+const site = getSiteUrl();
+
+const seoTitle =
+  lang === "ru"
+    ? "Как мы работаем — условия сотрудничества · Vibecraft"
+    : "How we work — terms of engagement · Vibecraft";
+const seoDescription =
+  lang === "ru"
+    ? "Условия сотрудничества Vibecraft: фикс-цена, передача исходников, циклы правок, поддержка после запуска."
+    : "Vibecraft engagement terms: fixed price, source handover, revision cycles, and post-launch support.";
+
+const backLabel = lang === "ru" ? "← На главную" : "← Home";
+const ctaLabel = lang === "ru" ? "Обсудить проект →" : "Discuss project →";
+
+const canonicalPath = `/${lang}/terms`;
+const alternates = [
+  { hreflang: "ru", href: new URL("/ru/terms", site).href },
+  { hreflang: "en", href: new URL("/en/terms", site).href },
+  { hreflang: "x-default", href: new URL("/ru/terms", site).href },
+];
+
+const graph = [
+  organizationNode(site),
+  breadcrumbList(site, [
+    { name: m.crumbs.home, path: `/${lang}/` },
+    { name: m.terms.shortNav, path: `/${lang}/terms` },
+  ]),
+];
+---
+
+<Layout
+  title={seoTitle}
+  description={seoDescription}
+  canonicalPath={canonicalPath}
+  ogImage={defaultOgImage}
+  htmlLang={lang}
+  {...ogLocalePair(lang)}
+  alternates={alternates}
+  jsonLd={graph}
+  bodyClass={SITE_BODY_CLASS}
+>
+  <main class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <a
+      href={`/${lang}/`}
+      class="inline-flex rounded-[var(--radius)] border border-line px-4 py-2 text-sm text-muted-foreground transition hover:border-neon/40 hover:text-foreground"
+    >
+      {backLabel}
+    </a>
+
+    <header class="mt-8 mb-10">
+      <p class="font-mono text-xs uppercase tracking-widest text-neon">Vibecraft</p>
+      <h1 class="mt-3 text-4xl font-bold text-foreground">{m.terms.title}</h1>
+    </header>
+
+    <ul class="space-y-5">
+      {m.terms.items.map((item) => (
+        <li class="flex gap-3">
+          <span class="mt-1 shrink-0 font-mono text-neon text-sm">✓</span>
+          <p class="text-foreground leading-relaxed">{item}</p>
+        </li>
+      ))}
+    </ul>
+
+    <p class="mt-10 text-sm text-muted-foreground italic">{m.terms.closing}</p>
+
+    <div class="mt-12 flex flex-wrap gap-4">
+      <a
+        href={`/${lang}/#contact`}
+        class="inline-flex items-center gap-2 rounded-[var(--radius)] bg-neon px-6 py-3 font-mono text-sm font-bold text-background transition hover:bg-neon/80"
+      >
+        {ctaLabel}
+      </a>
+      <a
+        href={telegramDirectUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-[var(--radius)] border border-line px-6 py-3 font-mono text-sm font-semibold text-foreground transition hover:border-neon/40"
+      >
+        Telegram →
+      </a>
+    </div>
+  </main>
+</Layout>
